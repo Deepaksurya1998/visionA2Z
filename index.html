@@ -3,18 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vision A2Z</title>
+    <title>Vision A2Z - Enterprise Software Solutions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
-    <link rel="manifest" href="site.webmanifest" />
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       body {
         margin: 0;
         padding: 0;
@@ -23,55 +25,803 @@
         color: #111;
       }
 
-      .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 0px;
-        text-align: center;
-        min-height: 100vh;
+
+
+      :root {
+        --primary-black: #000000;
+        --primary-white: #ffffff;
+        --gray-100: #f8f9fa;
+        --gray-200: #e9ecef;
+        --gray-300: #dee2e6;
+        --gray-400: #ced4da;
+        --gray-500: #adb5bd;
+        --gray-600: #6c757d;
+        --gray-700: #495057;
+        --gray-800: #343a40;
+        --gray-900: #212529;
       }
 
-      .logo {
-        font-size: 3rem;
-        font-weight: 800;
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: var(--gray-800);
+        overflow-x: hidden;
+      }
+
+      .orbitron {
+        font-family: "Orbitron", monospace;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 0;
+        transition: all 0.3s ease;
+      }
+
+      nav.scrolled {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-logo {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--primary-black);
+        text-decoration: none;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-menu a {
+        text-decoration: none;
+        color: var(--gray-700);
+        font-weight: 500;
+        transition: color 0.3s ease;
+        position: relative;
+      }
+
+      .nav-menu a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-black);
+        transition: width 0.3s ease;
+      }
+
+      .nav-menu a:hover {
+        color: var(--primary-black);
+      }
+
+      .nav-menu a:hover::after {
+        width: 100%;
+      }
+
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .mobile-menu span {
+        width: 25px;
+        height: 3px;
+        background: var(--primary-black);
+        margin: 3px 0;
+        transition: 0.3s;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          135deg,
+          var(--gray-100) 0%,
+          var(--primary-white) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="none" stroke="%23000" stroke-width="0.1" opacity="0.1"/></svg>');
+        background-size: 50px 50px;
+        opacity: 0.3;
+      }
+
+      .hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-title {
+        font-size: clamp(3rem, 8vw, 6rem);
+        font-weight: 900;
+        color: var(--primary-black);
+        margin-bottom: 1rem;
+        letter-spacing: -2px;
+      }
+
+      .hero-tagline {
+        font-size: 1.2rem;
+        color: var(--gray-600);
+        margin-bottom: 1rem;
+        font-weight: 300;
+      }
+
+      .hero-tamil {
+        font-size: 1rem;
+        color: var(--gray-500);
+        margin-bottom: 3rem;
+        font-style: italic;
+      }
+
+      .hero-cta {
+        display: inline-flex;
+        gap: 1rem;
+      }
+
+      .btn {
+        padding: 1rem 2rem;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-primary {
+        background: var(--primary-black);
+        color: var(--primary-white);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--primary-black);
+        border: 2px solid var(--primary-black);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn-primary:hover {
+        background: var(--gray-800);
+      }
+
+      .btn-secondary:hover {
+        background: var(--primary-black);
+        color: var(--primary-white);
+      }
+
+      /* Section Styles */
+      section {
+        padding: 6rem 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .section-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 700;
+        color: var(--primary-black);
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-subtitle {
+        font-size: 1.2rem;
+        color: var(--gray-600);
+        text-align: center;
+        margin-bottom: 4rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* About Section */
+      .about {
+        background: var(--primary-white);
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+
+      .about-text h3 {
+        font-size: 2rem;
+        color: var(--primary-black);
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+      }
+
+      .about-text p {
+        color: var(--gray-600);
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .about-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 2rem;
+        border: 1px solid var(--gray-200);
+        transition: all 0.3s ease;
+      }
+
+      .stat-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: var(--primary-black);
+      }
+
+      .stat-label {
+        color: var(--gray-600);
+        font-weight: 500;
+        margin-top: 0.5rem;
+      }
+
+      /* Products Section */
+      .products {
+        background: var(--gray-100);
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+      }
+
+      .product-card {
+        background: var(--primary-white);
+        padding: 3rem 2rem;
+        border: 1px solid var(--gray-200);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .product-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .product-card:hover::before {
+        left: 100%;
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border-color: var(--primary-black);
+      }
+
+      .product-icon {
+        width: 60px;
+        height: 60px;
+        background: var(--primary-black);
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
+
+      .product-icon::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 30px;
+        height: 30px;
+        background: var(--primary-white);
+      }
+
+      .product-card h3 {
+        font-size: 1.5rem;
+        color: var(--primary-black);
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      .product-card p {
+        color: var(--gray-600);
+        line-height: 1.6;
+      }
+
+      /* Contact Section */
+      .contact {
+        background: var(--primary-black);
+        color: var(--primary-white);
+      }
+
+      .contact .section-title {
+        color: var(--primary-white);
+      }
+
+      .contact .section-subtitle {
+        color: var(--gray-300);
+      }
+
+      .contact-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+      }
+
+      .contact-info h3 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        color: var(--primary-white);
+      }
+
+      .contact-item {
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-item strong {
+        color: var(--primary-white);
+        display: block;
         margin-bottom: 0.5rem;
       }
 
-      .tag-line {
-        font-weight: 200;
-        font-family: auto;
-        margin: 0px;
+      .contact-item a {
+        color: var(--gray-300);
+        text-decoration: none;
+        transition: color 0.3s ease;
       }
 
-      .contact {
-        font-weight: 200;
-        font-family: auto;
-        margin: 50px;
+      .contact-item a:hover {
+        color: var(--primary-white);
       }
 
-      @media only screen and (max-width: 600px) {
-        .tag-line {
-          font-size: 12px;
+      .contact-form {
+        background: var(--gray-900);
+        padding: 2rem;
+        border-radius: 8px;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--primary-white);
+        font-weight: 500;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid var(--gray-600);
+        background: var(--gray-800);
+        color: var(--primary-white);
+        border-radius: 4px;
+        transition: border-color 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary-white);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--gray-900);
+        color: var(--gray-300);
+        padding: 2rem 0;
+        text-align: center;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-menu {
+          display: none;
         }
+
+        .nav-container {
+          display: none;
+        }
+
+        .mobile-menu {
+          display: flex;
+        }
+
+        .hero-cta {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .about-content,
+        .contact-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .about-stats {
+          grid-template-columns: 1fr;
+        }
+
+        .products-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in-up {
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      /* Scroll animations */
+      .scroll-animate {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.6s ease;
+      }
+
+      .scroll-animate.active {
+        opacity: 1;
+        transform: translateY(0);
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <h1 class="logo">VISION A2Z</h1>
-      <h4 class="tag-line">சாதாரண மக்களுக்கு அசாதாரண தொழில்நுட்பம்</h4>
-
-      <!-- <div class="products">
-        <h2>Our Products</h2>
-        <a href="#events">EventsA2Z</a>
-        <a href="#schools">SchoolsA2Z</a>
-      </div> -->
-
-      <div class="contact">
-        <a href="mailto:deepaksurya@visiona2z.com">deepaksurya@visiona2z.com</a>
+    <!-- Navigation -->
+    <nav id="navbar">
+      <div class="nav-container">
+        <a href="#home" class="nav-logo orbitron">VISION A2Z</a>
+        <ul class="nav-menu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="mobile-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
-    </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-content fade-in-up">
+        <h1 class="hero-title orbitron">VISION A2Z</h1>
+        <p class="hero-tagline">
+          Enterprise Software Solutions for the Modern World
+        </p>
+        <p class="hero-tamil">சாதாரண மக்களுக்கு அசாதாரண தொழில்நுட்பம்</p>
+        <div class="hero-cta">
+          <a href="#products" class="btn btn-primary">Explore Products</a>
+          <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="section-title orbitron scroll-animate">About Us</h2>
+        <p class="section-subtitle scroll-animate">
+          Transforming businesses with cutting-edge enterprise software
+          solutions
+        </p>
+
+        <div class="about-content">
+          <div class="about-text scroll-animate">
+            <h3>Innovation at Its Core</h3>
+            <p>
+              Vision A2Z is a leading provider of enterprise-level software
+              solutions, dedicated to bringing extraordinary technology to
+              ordinary people. We specialize in creating comprehensive digital
+              ecosystems that streamline operations across various industries.
+            </p>
+            <p>
+              Our mission is to democratize advanced technology, making powerful
+              enterprise tools accessible and intuitive for businesses of all
+              sizes. From event management to educational institutions, from
+              debugging solutions to hospital management systems, we cover the
+              complete spectrum of organizational needs.
+            </p>
+            <p>
+              With a team of experienced developers and industry experts, we
+              deliver solutions that are not just technologically advanced, but
+              also practical and user-friendly.
+            </p>
+          </div>
+
+          <div class="about-stats scroll-animate">
+            <div class="stat-item">
+              <div class="stat-number orbitron">10+</div>
+              <div class="stat-label">Clients Served</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number orbitron">3 +</div>
+              <div class="stat-label">Product Lines</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number orbitron">4.8/5</div>
+              <div class="stat-label">Average Rating</div>
+             </div>
+            <div class="stat-item">
+              <div class="stat-number orbitron">24/7</div>
+              <div class="stat-label">Support</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+      <div class="container">
+        <h2 class="section-title orbitron scroll-animate">Product Lineup</h2>
+        <p class="section-subtitle scroll-animate">
+          Comprehensive enterprise solutions tailored for your industry
+        </p>
+
+        <div class="products-grid">
+          <div class="product-card scroll-animate">
+            <h3 class="orbitron">Events A2Z</h3>
+            <p>
+              Enterprise-level event management software that streamlines
+              planning, execution, and analysis of events of any scale. From
+              corporate conferences to large-scale festivals, manage everything
+              seamlessly.
+            </p>
+          </div>
+
+          <div class="product-card scroll-animate">
+            <h3 class="orbitron">Schools A2Z</h3>
+            <p>
+              Comprehensive educational management system designed for schools
+              and educational institutions. Handle admissions, academics,
+              administration, and communication in one integrated platform.
+            </p>
+          </div>
+
+          <div class="product-card scroll-animate">
+            <h3 class="orbitron">Hospital A2Z</h3>
+            <p>
+              Complete hospital management system covering patient care,
+              administrative operations, inventory management, and healthcare
+              analytics. Designed for modern healthcare facilities.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="section-title orbitron scroll-animate">Contact Us</h2>
+        <p class="section-subtitle scroll-animate">
+          Ready to transform your business? Let's discuss your requirements
+        </p>
+
+        <div class="contact-content">
+          <div class="contact-info scroll-animate">
+            <h3>Get in Touch</h3>
+            <div class="contact-item">
+              <strong>Email</strong>
+              <a href="mailto:deepaksurya@visiona2z.com"
+                >deepaksurya@visiona2z.com</a
+              >
+            </div>
+            <div class="contact-item">
+              <strong>Phone</strong>
+              <a href="tel:+918220821552">+91 8220821552</a>
+            </div>
+            <div class="contact-item">
+              <strong>Office Hours</strong>
+              <span>Monday - Friday: 9:00 AM - 6:00 PM IST</span>
+            </div>
+            <div class="contact-item">
+              <strong>Response Time</strong>
+              <span>Within 24 hours</span>
+            </div>
+          </div>
+
+          <div class="contact-form scroll-animate">
+            <form>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company" />
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>
+          &copy; 2024 Vision A2Z. All rights reserved. | Extraordinary
+          technology for ordinary people.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Navbar scroll effect
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("navbar");
+        if (window.scrollY > 100) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".scroll-animate").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Contact form handling
+      document
+        .querySelector(".contact-form form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Get form data
+          const formData = new FormData(this);
+          const name = formData.get("name");
+          const email = formData.get("email");
+          const company = formData.get("company");
+          const message = formData.get("message");
+
+          // Create mailto link
+          const subject = `Inquiry from ${name}${
+            company ? ` (${company})` : ""
+          }`;
+          const body = `Name: ${name}\nEmail: ${email}\n${
+            company ? `Company: ${company}\n` : ""
+          }\nMessage: ${message}`;
+          const mailtoLink = `mailto:deepaksurya@visiona2z.com?subject=${encodeURIComponent(
+            subject
+          )}&body=${encodeURIComponent(body)}`;
+
+          // Open default email client
+          window.location.href = mailtoLink;
+
+          // Reset form
+          this.reset();
+
+          // Show confirmation
+          alert(
+            "Thank you for your message! Your default email client should now open with the message pre-filled."
+          );
+        });
+    </script>
   </body>
 </html>
