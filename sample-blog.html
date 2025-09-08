@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vision A2Z - Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-black: #000000;
+        --primary-white: #ffffff;
+        --gray-100: #f8f9fa;
+        --gray-200: #e9ecef;
+        --gray-300: #dee2e6;
+        --gray-400: #ced4da;
+        --gray-500: #adb5bd;
+        --gray-600: #6c757d;
+        --gray-700: #495057;
+        --gray-800: #343a40;
+        --gray-900: #212529;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: var(--gray-800);
+        background-color: var(--primary-white);
+        overflow-x: hidden;
+      }
+
+      .orbitron {
+        font-family: "Orbitron", monospace;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 0;
+        transition: all 0.3s ease;
+        border-bottom: 1px solid var(--gray-200);
+      }
+
+      nav.scrolled {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-logo {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--primary-black);
+        text-decoration: none;
+        letter-spacing: -1px;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-menu a {
+        text-decoration: none;
+        color: var(--gray-700);
+        font-weight: 500;
+        transition: color 0.3s ease;
+        position: relative;
+      }
+
+      .nav-menu a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-black);
+        transition: width 0.3s ease;
+      }
+
+      .nav-menu a:hover,
+      .nav-menu a.active {
+        color: var(--primary-black);
+      }
+
+      .nav-menu a:hover::after,
+      .nav-menu a.active::after {
+        width: 100%;
+      }
+
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .mobile-menu span {
+        width: 25px;
+        height: 3px;
+        background: var(--primary-black);
+        margin: 3px 0;
+        transition: 0.3s;
+      }
+
+      /* Hero Section */
+      .blog-hero {
+        padding: 120px 0 80px;
+        background: linear-gradient(
+          135deg,
+          var(--gray-100) 0%,
+          var(--primary-white) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .blog-hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="none" stroke="%23000" stroke-width="0.1" opacity="0.1"/></svg>');
+        background-size: 50px 50px;
+        opacity: 0.3;
+      }
+
+      .blog-hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .blog-hero h1 {
+        font-size: clamp(3rem, 6vw, 4.5rem);
+        font-weight: 900;
+        color: var(--primary-black);
+        margin-bottom: 1rem;
+        letter-spacing: -2px;
+      }
+
+      .blog-hero p {
+        font-size: 1.3rem;
+        color: var(--gray-600);
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        font-weight: 300;
+      }
+
+      /* Search Bar */
+      .search-container {
+        max-width: 600px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .search-box {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        border: 2px solid var(--gray-300);
+        background: var(--primary-white);
+        color: var(--gray-800);
+        font-size: 1rem;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+      }
+
+      .search-box:focus {
+        outline: none;
+        border-color: var(--primary-black);
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Filter Section */
+      .filter-section {
+        padding: 2rem 0;
+        background: var(--primary-white);
+        border-bottom: 1px solid var(--gray-200);
+      }
+
+      .filter-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .filter-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .filter-tab {
+        padding: 0.75rem 1.5rem;
+        background: transparent;
+        border: 1px solid var(--gray-300);
+        color: var(--gray-600);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        border-radius: 25px;
+      }
+
+      .filter-tab:hover,
+      .filter-tab.active {
+        background: var(--primary-black);
+        color: var(--primary-white);
+        border-color: var(--primary-black);
+        transform: translateY(-2px);
+      }
+
+      /* Main Content */
+      .main-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 4rem;
+      }
+
+      /* Blog Grid */
+      .blog-grid {
+        display: grid;
+        gap: 3rem;
+      }
+
+      /* Featured Article */
+      .featured-article {
+        border: 1px solid var(--gray-200);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        background: var(--primary-white);
+        position: relative;
+      }
+
+      .featured-article::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .featured-article:hover::before {
+        left: 100%;
+      }
+
+      .featured-article:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border-color: var(--primary-black);
+      }
+
+      .featured-image {
+        width: 100%;
+        height: 300px;
+        background: linear-gradient(45deg, var(--gray-200) 25%, transparent 25%),
+          linear-gradient(-45deg, var(--gray-200) 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, var(--gray-200) 75%),
+          linear-gradient(-45deg, transparent 75%, var(--gray-200) 75%);
+        background-size: 20px 20px;
+        background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .featured-image::after {
+        content: "📸";
+        font-size: 3rem;
+        opacity: 0.3;
+      }
+
+      .article-content {
+        padding: 2rem;
+      }
+
+      .article-meta {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        color: var(--gray-500);
+      }
+
+      .article-tag {
+        background: var(--gray-100);
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--gray-700);
+      }
+
+      .article-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-black);
+        margin-bottom: 1rem;
+        line-height: 1.3;
+      }
+
+      .article-excerpt {
+        color: var(--gray-600);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .read-more {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--primary-black);
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .read-more:hover {
+        gap: 1rem;
+      }
+
+      .read-more::after {
+        content: "→";
+        transition: transform 0.3s ease;
+      }
+
+      .read-more:hover::after {
+        transform: translateX(5px);
+      }
+
+      /* Regular Articles */
+      .article-card {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 2rem;
+        border: 1px solid var(--gray-200);
+        padding: 2rem;
+        transition: all 0.3s ease;
+        background: var(--primary-white);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .article-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .article-card:hover::before {
+        left: 100%;
+      }
+
+      .article-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border-color: var(--primary-black);
+      }
+
+      .article-thumbnail {
+        width: 200px;
+        height: 120px;
+        background: linear-gradient(45deg, var(--gray-200) 25%, transparent 25%),
+          linear-gradient(-45deg, var(--gray-200) 25%, transparent 25%);
+        background-size: 10px 10px;
+        background-position: 0 0, 5px 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .article-thumbnail::after {
+        content: "📰";
+        font-size: 2rem;
+        opacity: 0.3;
+      }
+
+      .article-card .article-content {
+        padding: 0;
+      }
+
+      .article-card .article-title {
+        font-size: 1.3rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .article-card .article-excerpt {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+      }
+
+      .sidebar-widget {
+        background: var(--gray-100);
+        padding: 2rem;
+        border: 1px solid var(--gray-200);
+        transition: all 0.3s ease;
+      }
+
+      .sidebar-widget:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .widget-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--primary-black);
+        margin-bottom: 1.5rem;
+      }
+
+      .popular-post {
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--gray-300);
+        transition: all 0.3s ease;
+      }
+
+      .popular-post:last-child {
+        border-bottom: none;
+      }
+
+      .popular-post:hover {
+        background: var(--primary-white);
+        margin: 0 -1rem;
+        padding: 1rem;
+        border-radius: 8px;
+      }
+
+      .popular-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--primary-black);
+        margin-bottom: 0.5rem;
+        text-decoration: none;
+        display: block;
+      }
+
+      .popular-date {
+        font-size: 0.85rem;
+        color: var(--gray-500);
+      }
+
+      .tag-cloud {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .tag {
+        padding: 0.5rem 1rem;
+        background: var(--primary-white);
+        border: 1px solid var(--gray-300);
+        color: var(--gray-700);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        border-radius: 20px;
+      }
+
+      .tag:hover {
+        background: var(--primary-black);
+        color: var(--primary-white);
+        transform: translateY(-2px);
+      }
+
+      /* Newsletter */
+      .newsletter {
+        background: var(--primary-black);
+        color: var(--primary-white);
+        text-align: center;
+      }
+
+      .newsletter .widget-title {
+        color: var(--primary-white);
+      }
+
+      .newsletter p {
+        color: var(--gray-300);
+        margin-bottom: 1.5rem;
+      }
+
+      .newsletter-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .newsletter input {
+        padding: 0.75rem;
+        border: 1px solid var(--gray-600);
+        background: var(--gray-800);
+        color: var(--primary-white);
+        border-radius: 4px;
+      }
+
+      .newsletter input:focus {
+        outline: none;
+        border-color: var(--primary-white);
+      }
+
+      .newsletter-btn {
+        padding: 0.75rem;
+        background: var(--primary-white);
+        color: var(--primary-black);
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 4px;
+      }
+
+      .newsletter-btn:hover {
+        background: var(--gray-200);
+        transform: translateY(-2px);
+      }
+
+      /* Pagination */
+      .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 3rem;
+      }
+
+      .page-btn {
+        padding: 0.75rem 1.25rem;
+        background: transparent;
+        border: 1px solid var(--gray-300);
+        color: var(--gray-700);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: 500;
+      }
+
+      .page-btn:hover,
+      .page-btn.active {
+        background: var(--primary-black);
+        color: var(--primary-white);
+        border-color: var(--primary-black);
+        transform: translateY(-2px);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--gray-900);
+        color: var(--gray-300);
+        padding: 3rem 0 2rem;
+        margin-top: 4rem;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 3rem;
+      }
+
+      .footer-section h3 {
+        color: var(--primary-white);
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-section a {
+        color: var(--gray-400);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-section a:hover {
+        color: var(--primary-white);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid var(--gray-700);
+        margin-top: 2rem;
+        color: var(--gray-500);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-menu {
+          display: none;
+        }
+
+        .mobile-menu {
+          display: flex;
+        }
+
+        .main-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .article-card {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .article-thumbnail {
+          width: 100%;
+          height: 200px;
+        }
+
+        .filter-tabs {
+          justify-content: flex-start;
+          overflow-x: auto;
+          padding-bottom: 0.5rem;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .blog-hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .blog-hero p {
+          font-size: 1.1rem;
+        }
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in-up {
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      .scroll-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .scroll-animate.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav id="navbar">
+      <div class="nav-container">
+        <a href="#" class="nav-logo orbitron">VISION A2Z</a>
+        <ul class="nav-menu">
+          <li><a href="#">Home</a></li>
+          <li><a href="#" class="active">Blog</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="mobile-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+      <div class="blog-hero-content fade-in-up">
+        <h1 class="orbitron">Tech Insights</h1>
+        <p>
+          Discover the latest trends, insights, and innovations in enterprise
+          software development
+        </p>
+        <div class="search-container">
+          <input
+            type="text"
+            class="search-box"
+            placeholder="Search articles..."
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+      <div class="filter-container">
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-category="all">
+            All Articles
+          </button>
+          <button class="filter-tab" data-category="enterprise">
+            Enterprise Solutions
+          </button>
+          <button class="filter-tab" data-category="technology">
+            Technology
+          </button>
+          <button class="filter-tab" data-category="healthcare">
+            Healthcare
+          </button>
+          <button class="filter-tab" data-category="education">
+            Education
+          </button>
+          <button class="filter-tab" data-category="events">
+            Event Management
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="blog-grid">
+        <!-- Featured Article -->
+        <article class="featured-article scroll-animate">
+          <div class="featured-image"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Enterprise</span>
+              <span>•</span>
+              <span>December 15, 2024</span>
+              <span>•</span>
+              <span>8 min read</span>
+            </div>
+            <h2 class="article-title">
+              The Future of Enterprise Software: AI-Driven Solutions
+            </h2>
+            <p class="article-excerpt">
+              Explore how artificial intelligence is revolutionizing enterprise
+              software development and management. From automated workflows to
+              predictive analytics, discover the technologies shaping tomorrow's
+              business landscape.
+            </p>
+            <a href="#" class="read-more">Read Full Article</a>
+          </div>
+        </article>
+
+        <!-- Regular Articles -->
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Healthcare</span>
+              <span>•</span>
+              <span>December 12, 2024</span>
+            </div>
+            <h3 class="article-title">
+              Digital Transformation in Healthcare: A Complete Guide
+            </h3>
+            <p class="article-excerpt">
+              Learn how modern healthcare institutions are leveraging technology
+              to improve patient care, streamline operations, and enhance
+              overall efficiency.
+            </p>
+            <a href="#" class="read-more">Read More</a>
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Education</span>
+              <span>•</span>
+              <span>December 10, 2024</span>
+            </div>
+            <h3 class="article-title">
+              Modern School Management Systems: Best Practices
+            </h3>
+            <p class="article-excerpt">
+              Discover the key features and implementation strategies for
+              successful school management software deployment in educational
+              institutions.
+            </p>
+            <a href="#" class="read-more">Read More</a>
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Events</span>
+              <span>•</span>
+              <span>December 8, 2024</span>
+            </div>
+            <h3 class="article-title">
+              Event Management Technology Trends for 2025
+            </h3>
+            <p class="article-excerpt">
+              Stay ahead of the curve with the latest innovations in event
+              management software, from virtual reality experiences to
+              AI-powered planning tools.
+            </p>
+            <a href="#" class="read-more">Read More</a>
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Technology</span>
+              <span>•</span>
+              <span>December 5, 2024</span>
+            </div>
+            <h3 class="article-title">
+              Cloud Security Best Practices for Enterprise Applications
+            </h3>
+            <p class="article-excerpt">
+              Essential security measures and protocols every organization
+              should implement when deploying enterprise software solutions in
+              the cloud.
+            </p>
+            <a href="#" class="read-more">Read More</a>
+          </div>
+        </article>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <a href="#" class="page-btn">← Previous</a>
+          <a href="#" class="page-btn active">1</a>
+          <a href="#" class="page-btn">2</a>
+          <a href="#" class="page-btn">3</a>
+          <a href="#" class="page-btn">Next →</a>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <!-- Popular Posts -->
+        <div class="sidebar-widget scroll-animate">
+          <h3 class="widget-title orbitron">Popular Posts</h3>
+          <div class="popular-post">
+            <a href="#" class="popular-title"
+              >10 Essential Features Every Hospital Management System Needs</a
+            >
+            <div class="popular-date">November 28, 2024</div>
+          </div>
+          <div class="popular-post">
+            <a href="#" class="popular-title"
+              >Implementing Event Management Software: A Step-by-Step Guide</a
+            >
+            <div class="popular-date">November 25, 2024</div>
+          </div>
+          <div class="popular-post">
+            <a href="#" class="popular-title"
+              >The ROI of Educational Technology in Modern Schools</a
+            >
+            <div class="popular-date">November 22, 2024</div>
+          </div>
+          <div class="popular-post">
+            <a href="#" class="popular-title"
+              >Enterprise Software Trends to Watch in 2025</a
+            >
+            <div class="popular-date">November 20, 2024</div>
+          </div>
+        </div>
+
+        <!-- Tags -->
+        <div class="sidebar-widget scroll-animate">
+          <h3 class="widget-title orbitron">Popular Tags</h3>
+          <div class="tag-cloud">
+            <a href="#" class="tag">Enterprise Software</a>
+            <a href="#" class="tag">Healthcare IT</a>
+            <a href="#" class="tag">Education Technology</a>
+            <a href="#" class="tag">Event Management</a>
+            <a href="#" class="tag">Digital Transformation</a>
+            <a href="#" class="tag">Cloud Computing</a>
+            <a href="#" class="tag">AI & ML</a>
+            <a href="#" class="tag">Software Development</a>
+            <a href="#" class="tag">User Experience</a>
+            <a href="#" class="tag">Data Analytics</a>
+          </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="sidebar-widget newsletter scroll-animate">
+          <h3 class="widget-title orbitron">Stay Updated</h3>
+          <p>
+            Subscribe to our newsletter for the latest insights and industry
+            updates.
+          </p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Your email address" required />
+            <button type="submit" class="newsletter-btn">Subscribe</button>
+          </form>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3 class="orbitron">Vision A2Z</h3>
+          <p>
+            Extraordinary technology for ordinary people. Leading provider of
+            enterprise software solutions.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Categories</h3>
+          <ul>
+            <li><a href="#">Enterprise Solutions</a></li>
+            <li><a href="#">Healthcare Technology</a></li>
+            <li><a href="#">Education Management</a></li>
+            <li><a href="#">Event Management</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          &copy; 2024 Vision A2Z. All rights reserved. | Tech insights for the
+          modern enterprise.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Navbar scroll effect
+      // Navbar scroll effect
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("navbar");
+        if (window.scrollY > 100) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".scroll-animate").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Filter functionality
+      const filterTabs = document.querySelectorAll(".filter-tab");
+      const articles = document.querySelectorAll(
+        ".article-card, .featured-article"
+      );
+
+      filterTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          // Remove active class from all tabs
+          filterTabs.forEach((t) => t.classList.remove("active"));
+          // Add active class to clicked tab
+          tab.classList.add("active");
+
+          const category = tab.dataset.category;
+
+          // Filter articles (this is a basic implementation - in real app you'd filter based on actual data)
+          articles.forEach((article) => {
+            if (category === "all") {
+              article.style.display = "block";
+              article.style.animation = "fadeInUp 0.6s ease-out";
+            } else {
+              // Simple random display for demo purposes
+              const shouldShow = Math.random() > 0.3;
+              article.style.display = shouldShow ? "block" : "none";
+              if (shouldShow) {
+                article.style.animation = "fadeInUp 0.6s ease-out";
+              }
+            }
+          });
+        });
+      });
+
+      // Search functionality
+      const searchBox = document.querySelector(".search-box");
+      searchBox.addEventListener("input", (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+
+        articles.forEach((article) => {
+          const title = article
+            .querySelector(".article-title")
+            .textContent.toLowerCase();
+          const excerpt = article
+            .querySelector(".article-excerpt")
+            .textContent.toLowerCase();
+
+          if (
+            title.includes(searchTerm) ||
+            excerpt.includes(searchTerm) ||
+            searchTerm === ""
+          ) {
+            article.style.display = "block";
+            article.style.animation = "fadeInUp 0.6s ease-out";
+          } else {
+            article.style.display = "none";
+          }
+        });
+      });
+
+      // Newsletter form
+      const newsletterForm = document.querySelector(".newsletter-form");
+      newsletterForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const email = this.querySelector('input[type="email"]').value;
+
+        if (email) {
+          // Create mailto link for newsletter subscription
+          const subject = "Newsletter Subscription Request";
+          const body = `I would like to subscribe to the Vision A2Z newsletter.\n\nEmail: ${email}`;
+          const mailtoLink = `mailto:deepaksurya@visiona2z.com?subject=${encodeURIComponent(
+            subject
+          )}&body=${encodeURIComponent(body)}`;
+
+          window.location.href = mailtoLink;
+          this.reset();
+          alert(
+            "Thank you for subscribing! Your default email client should now open."
+          );
+        }
+      });
+
+      // Mobile menu toggle (basic implementation)
+      const mobileMenu = document.querySelector(".mobile-menu");
+      const navMenu = document.querySelector(".nav-menu");
+
+      mobileMenu.addEventListener("click", () => {
+        navMenu.style.display =
+          navMenu.style.display === "flex" ? "none" : "flex";
+      });
+
+      // Add loading animation to page
+      window.addEventListener("load", () => {
+        document.body.style.opacity = "0";
+        document.body.style.animation = "fadeInUp 0.8s ease-out forwards";
+      });
+
+      // Pagination functionality
+      const pageButtons = document.querySelectorAll(".page-btn");
+      pageButtons.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          // Remove active class from all buttons
+          pageButtons.forEach((b) => b.classList.remove("active"));
+
+          // Add active class to clicked button (if it's a number)
+          if (
+            !btn.textContent.includes("Previous") &&
+            !btn.textContent.includes("Next")
+          ) {
+            btn.classList.add("active");
+          }
+
+          // Scroll to top of blog grid
+          document.querySelector(".blog-grid").scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        });
+      });
+
+      // Add hover effects for article cards
+      const articleCards = document.querySelectorAll(
+        ".article-card, .featured-article"
+      );
+      articleCards.forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-8px)";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(0)";
+        });
+      });
+
+      // Popular posts click handling
+      const popularPosts = document.querySelectorAll(".popular-title");
+      popularPosts.forEach((post) => {
+        post.addEventListener("click", (e) => {
+          e.preventDefault();
+          // In a real application, this would navigate to the actual post
+          alert("This would navigate to: " + post.textContent);
+        });
+      });
+
+      // Tag cloud functionality
+      const tags = document.querySelectorAll(".tag");
+      tags.forEach((tag) => {
+        tag.addEventListener("click", (e) => {
+          e.preventDefault();
+          const tagText = tag.textContent.toLowerCase();
+
+          // Filter articles based on tag (simplified demo)
+          articles.forEach((article) => {
+            const articleTag = article
+              .querySelector(".article-tag")
+              .textContent.toLowerCase();
+            const title = article
+              .querySelector(".article-title")
+              .textContent.toLowerCase();
+
+            if (articleTag.includes(tagText) || title.includes(tagText)) {
+              article.style.display = "block";
+              article.style.animation = "fadeInUp 0.6s ease-out";
+            } else {
+              article.style.display = "none";
+            }
+          });
+
+          // Update active filter tab
+          filterTabs.forEach((tab) => tab.classList.remove("active"));
+
+          // Scroll to articles
+          document.querySelector(".blog-grid").scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      From Complex to Simple: How Enterprise Software is Democratizing Advanced Technology | Vision A2Z Blog
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-black: #000000;
+        --primary-white: #ffffff;
+        --gray-100: #f8f9fa;
+        --gray-200: #e9ecef;
+        --gray-300: #dee2e6;
+        --gray-400: #ced4da;
+        --gray-500: #adb5bd;
+        --gray-600: #6c757d;
+        --gray-700: #495057;
+        --gray-800: #343a40;
+        --gray-900: #212529;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.7;
+        color: var(--gray-800);
+        background-color: var(--primary-white);
+        overflow-x: hidden;
+      }
+
+      .orbitron {
+        font-family: "Orbitron", monospace;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 0;
+        transition: all 0.3s ease;
+        border-bottom: 1px solid var(--gray-200);
+      }
+
+      nav.scrolled {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-logo {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--primary-black);
+        text-decoration: none;
+        letter-spacing: -1px;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-menu a {
+        text-decoration: none;
+        color: var(--gray-700);
+        font-weight: 500;
+        transition: color 0.3s ease;
+        position: relative;
+      }
+
+      .nav-menu a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-black);
+        transition: width 0.3s ease;
+      }
+
+      .nav-menu a:hover,
+      .nav-menu a.active {
+        color: var(--primary-black);
+      }
+
+      .nav-menu a:hover::after,
+      .nav-menu a.active::after {
+        width: 100%;
+      }
+
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .mobile-menu span {
+        width: 25px;
+        height: 3px;
+        background: var(--primary-black);
+        margin: 3px 0;
+        transition: 0.3s;
+      }
+
+      /* Article Header */
+      .article-header {
+        background: var(--primary-white);
+        padding-top: 6rem;
+      }
+
+      .article-header-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        text-align: center;
+      }
+
+      .article-category {
+        display: inline-block;
+        background: var(--primary-black);
+        color: var(--primary-white);
+        padding: 0.5rem 1.5rem;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        letter-spacing: 0.5px;
+      }
+
+      .article-title {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        font-weight: 700;
+        color: var(--primary-black);
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        letter-spacing: -1px;
+      }
+
+      .article-meta {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--gray-600);
+        font-size: 0.95rem;
+      }
+
+      .author-avatar {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(45deg, var(--gray-300), var(--gray-400));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        color: var(--primary-white);
+      }
+
+      .article-excerpt {
+        font-size: 1.2rem;
+        color: var(--gray-600);
+        line-height: 1.6;
+        font-style: italic;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      /* Featured Image */
+      .featured-image-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .featured-image {
+        width: 100%;
+        height: 400px;
+        background: linear-gradient(45deg, var(--gray-200) 25%, transparent 25%),
+          linear-gradient(-45deg, var(--gray-200) 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, var(--gray-200) 75%),
+          linear-gradient(-45deg, transparent 75%, var(--gray-200) 75%);
+        background-size: 40px 40px;
+        background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+        border: 1px solid var(--gray-300);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin-bottom: 4rem;
+      }
+
+      .featured-image::after {
+        content: "🔧";
+        font-size: 4rem;
+        opacity: 0.3;
+      }
+
+      /* Article Content */
+      .article-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: grid;
+        gap: 4rem;
+      }
+
+      .article-content {
+        background: var(--primary-white);
+      }
+
+      .article-content h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary-black);
+        margin: 3rem 0 1.5rem;
+        line-height: 1.3;
+      }
+
+      .article-content h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--primary-black);
+        margin: 2.5rem 0 1rem;
+        line-height: 1.4;
+      }
+
+      .article-content p {
+        margin-bottom: 1.8rem;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--gray-700);
+      }
+
+      .article-content blockquote {
+        border-left: 4px solid var(--primary-black);
+        padding: 1.5rem 2rem;
+        margin: 2rem 0;
+        background: var(--gray-100);
+        font-style: italic;
+        font-size: 1.1rem;
+        color: var(--gray-700);
+        position: relative;
+      }
+
+      .article-content blockquote::before {
+        content: '"';
+        font-size: 4rem;
+        color: var(--gray-300);
+        position: absolute;
+        top: -10px;
+        left: 10px;
+        line-height: 1;
+      }
+
+      .article-content ul {
+        margin: 1.5rem 0;
+        padding-left: 2rem;
+      }
+
+      .article-content li {
+        margin-bottom: 0.8rem;
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: var(--gray-700);
+      }
+
+      .highlight-box {
+        background: var(--gray-100);
+        border: 1px solid var(--gray-300);
+        padding: 2rem;
+        margin: 2rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .highlight-box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: var(--primary-black);
+      }
+
+      .highlight-box h4 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--primary-black);
+        margin-bottom: 1rem;
+      }
+
+      /* Table of Contents Sidebar */
+      .article-sidebar {
+        position: sticky;
+        top: 120px;
+        height: fit-content;
+      }
+
+      .toc-widget {
+        background: var(--gray-100);
+        padding: 2rem;
+        border: 1px solid var(--gray-200);
+        margin-bottom: 2rem;
+        transition: all 0.3s ease;
+      }
+
+      .toc-widget:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .toc-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--primary-black);
+        margin-bottom: 1.5rem;
+      }
+
+      .toc-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .toc-list li {
+        margin-bottom: 0.8rem;
+      }
+
+      .toc-list a {
+        color: var(--gray-600);
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        display: block;
+        padding: 0.5rem 0;
+        border-left: 3px solid transparent;
+        padding-left: 1rem;
+      }
+
+      .toc-list a:hover,
+      .toc-list a.active {
+        color: var(--primary-black);
+        border-left-color: var(--primary-black);
+        background: var(--primary-white);
+        margin: 0 -1rem;
+        padding-left: 2rem;
+        border-radius: 0 4px 4px 0;
+      }
+
+      /* Share Widget */
+      .share-widget {
+        background: var(--primary-black);
+        color: var(--primary-white);
+        padding: 2rem;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .share-title {
+        color: var(--primary-white);
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+
+      .share-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .share-btn {
+        padding: 0.75rem 1.5rem;
+        background: var(--gray-800);
+        color: var(--primary-white);
+        text-decoration: none;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: 1px solid var(--gray-600);
+      }
+
+      .share-btn:hover {
+        background: var(--primary-white);
+        color: var(--primary-black);
+        transform: translateY(-2px);
+      }
+
+      /* Back to Top */
+      .back-to-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 50px;
+        height: 50px;
+        background: var(--primary-black);
+        color: var(--primary-white);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        visibility: hidden;
+        z-index: 999;
+      }
+
+      .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background: var(--gray-800);
+        transform: translateY(-3px);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--gray-900);
+        color: var(--gray-300);
+        padding: 2rem 0;
+        text-align: center;
+        margin-top: 4rem;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-menu {
+          display: none;
+        }
+
+        .mobile-menu {
+          display: flex;
+        }
+
+        .article-container {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .article-sidebar {
+          position: static;
+          order: -1;
+        }
+
+        .article-meta {
+          flex-direction: column;
+          gap: 1rem;
+        }
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in-up {
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      .scroll-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .scroll-animate.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+     <div id="header">
+
+     </div>
+
+    <!-- Article Header -->
+    <header class="article-header">
+      <div class="article-header-container fade-in-up">
+        <div class="article-category">Digital Transformation</div>
+        <h1 class="article-title orbitron">
+          From Complex to Simple: How Enterprise Software is Democratizing Advanced Technology
+        </h1>
+        <div class="article-meta">
+          <div class="meta-item">
+            <div class="author-avatar">VA</div>
+            <span>Vision A2Z Team</span>
+          </div>
+          <div class="meta-item">
+            <span>📅 December 18, 2024</span>
+          </div>
+          <div class="meta-item">
+            <span>🕒 12 min read</span>
+          </div>
+          <div class="meta-item">
+            <span>👁️ 1,847 views</span>
+          </div>
+        </div>
+        <p class="article-excerpt">
+          Discover how enterprise software has evolved from exclusive, expensive solutions to accessible tools that empower businesses of all sizes. A journey from complexity to simplicity that's transforming the business landscape.
+        </p>
+      </div>
+    </header>
+
+    <!-- Featured Image -->
+    <div class="featured-image-container scroll-animate">
+      <div class="featured-image"></div>
+    </div>
+
+    <!-- Main Article Content -->
+    <div class="article-container">
+      <article class="article-content scroll-animate">
+        <p>
+          Remember when smartphones first came out? The early models were clunky, expensive, and frankly, intimidating for most people. Fast forward to today, and your grandmother probably navigates her iPhone better than you do. That's the power of democratization in technology – taking something complex and making it accessible to everyone.
+        </p>
+
+        <p>
+          The same transformation is happening right now in the world of enterprise software, and it's changing how businesses operate across the globe.
+        </p>
+
+        <h2>The Old Days: When Technology Was a Luxury</h2>
+
+        <p>
+          Not too long ago, if you wanted sophisticated business management tools, you had two choices: spend hundreds of thousands of dollars on custom enterprise solutions, or make do with basic software that barely scratched the surface of what you needed.
+        </p>
+
+        <p>
+          I remember visiting a mid-sized manufacturing company in Chennai just five years ago. Their inventory management involved three different Excel sheets, two separate databases, and a lot of manual phone calls. When asked why they didn't upgrade to something more sophisticated, the owner simply shrugged: "Those systems are for companies like Tata or Reliance, not for us."
+        </p>
+
+        <p>
+          That mindset wasn't wrong at the time. Enterprise-grade solutions were indeed reserved for large corporations with deep pockets and dedicated IT teams. The software was complex, required extensive training, and came with maintenance costs that could bankrupt smaller operations.
+        </p>
+
+        <h2>The Shift: Technology Becomes Universal</h2>
+
+        <p>What changed? Several factors converged to create what we're seeing today:</p>
+
+        <p>
+          <strong>Cloud Computing Revolution:</strong> Instead of buying expensive servers and hiring IT staff, businesses can now access powerful software through the internet. This shift eliminated the biggest barrier to entry – infrastructure costs.
+        </p>
+
+        <p>
+          <strong>User Experience Focus:</strong> Software developers finally realized that powerful doesn't have to mean complicated. The same principles that made consumer apps intuitive started flowing into business software.
+        </p>
+
+        <p>
+          <strong>Modular Design:</strong> Rather than forcing businesses to adopt massive, monolithic systems, modern enterprise software is built in modules. You can start with what you need and expand as you grow.
+        </p>
+
+        <p>
+          <strong>Competition and Innovation:</strong> As more companies entered the enterprise software space, competition drove innovation while pushing prices down.
+        </p>
+
+        <h2>Real-World Impact: Stories from the Ground</h2>
+
+        <p>Let me share a few examples of how this democratization is playing out in real businesses:</p>
+
+        <h3>The School Principal's Revelation</h3>
+
+        <p>
+          Last year, I spoke with the principal of a private school in Coimbatore. She was drowning in administrative work – student records, fee collection, teacher scheduling, parent communication. Her exact words were, "I became an educator to teach, not to be a data entry clerk."
+        </p>
+
+        <p>
+          After implementing a comprehensive school management system, she got her evenings back. Parents could check their children's progress online, teachers could update attendance with a few clicks, and fee collection became automated. The technology didn't replace the human element; it freed up time for more meaningful human interactions.
+        </p>
+
+        <h3>The Event Planner's Transformation</h3>
+
+        <p>
+          A wedding planner in Bangalore used to juggle vendor coordination through WhatsApp groups, budget tracking through Excel, and client communication through email. One missed message could derail an entire event.
+        </p>
+
+        <p>
+          Now, with integrated event management software, everything flows through a single platform. Vendors can update their status in real-time, budgets automatically adjust when changes are made, and clients can see progress without constant phone calls. The planner told me, "I'm less stressed and more creative now."
+        </p>
+
+        <h3>The Hospital Administrator's Relief</h3>
+
+        <p>
+          A 100-bed hospital in Kerala was struggling with patient flow management. Beds were sometimes double-booked, medical histories were scattered across different systems, and billing errors were common.
+        </p>
+
+        <p>
+          An integrated hospital management system transformed their operations. Patient data flows seamlessly from admission to discharge, billing happens automatically based on services provided, and bed occupancy is optimized in real-time. The administrator noted, "We're seeing 20% more patients without adding staff."
+        </p>
+
+        <h2>The Vision A2Z Philosophy: அசாதாரண தொழில்நுட்பம் சாதாரண மக்களுக்கு</h2>
+
+        <p>
+          At Vision A2Z, we embrace the Tamil phrase "அசாதாரண தொழில்நுட்பம் சாதாரண மக்களுக்கு" – extraordinary technology for ordinary people. This isn't just a tagline; it's our fundamental belief about how technology should work.
+        </p>
+
+        <p>We've seen too many businesses struggle with software that feels like it was designed by engineers for engineers. Our approach is different:</p>
+
+        <p>
+          <strong>Start with the User:</strong> Before writing a single line of code, we spend time understanding how people actually work. What are their daily frustrations? What tasks eat up most of their time? What would make their jobs easier?
+        </p>
+
+        <p>
+          <strong>Progressive Complexity:</strong> Our software grows with your business. Start simple, add features as you need them. No one should feel overwhelmed on day one.
+        </p>
+
+        <p>
+          <strong>Local Understanding:</strong> Technology might be global, but business practices are local. Our solutions understand Indian business contexts, regulatory requirements, and cultural nuances.
+        </p>
+
+        <h2>The Democratization Effect: Beyond Individual Businesses</h2>
+
+        <p>This shift toward accessible enterprise software is creating ripple effects across the economy:</p>
+
+        <p>
+          <strong>Leveling the Playing Field:</strong> Small businesses can now compete with larger enterprises using similar tools and capabilities. A startup can have the same customer relationship management system as a multinational corporation.
+        </p>
+
+        <p>
+          <strong>Innovation Acceleration:</strong> When businesses spend less time on administrative tasks, they can focus more on innovation and growth. We're seeing new business models emerge because entrepreneurs can focus on their core ideas rather than operational complexity.
+        </p>
+
+        <p>
+          <strong>Skill Development:</strong> As user-friendly enterprise software becomes common, more people develop digital literacy skills. This creates a more capable workforce across all sectors.
+        </p>
+
+        <p>
+          <strong>Economic Growth:</strong> Efficient businesses contribute more to the economy. When a hospital can serve more patients, a school can educate more students, or an event company can handle more weddings, the entire community benefits.
+        </p>
+
+        <h2>Challenges and Considerations</h2>
+
+        <p>Democratization isn't without its challenges. Some businesses worry about security, others about losing the personal touch that comes with manual processes. These concerns are valid but manageable:</p>
+
+        <p>
+          <strong>Security:</strong> Modern enterprise software often has better security than traditional methods. Your data is safer in a professionally managed cloud system than in an Excel file on someone's laptop.
+        </p>
+
+        <p>
+          <strong>Personal Touch:</strong> Good software enhances human relationships rather than replacing them. When you're not bogged down by administrative tasks, you can spend more time with customers, students, or patients.
+        </p>
+
+        <p>
+          <strong>Change Management:</strong> Any transition requires adjustment. The key is choosing software that makes the learning curve manageable and provides excellent support during the transition.
+        </p>
+
+        <h2>Looking Ahead: The Future is Accessible</h2>
+
+        <p>
+          We're still in the early stages of this democratization. Artificial intelligence, machine learning, and automation are becoming increasingly accessible. Soon, small businesses will have access to predictive analytics, automated customer service, and intelligent decision-making tools that were once exclusive to tech giants.
+        </p>
+
+        <p>
+          The question isn't whether your business should embrace advanced technology – it's how quickly you can adapt to stay competitive. The good news is that this technology is becoming more accessible every day.
+        </p>
+
+        <h2>Making the Leap</h2>
+
+        <p>If you're a business owner reading this and thinking, "This sounds great, but where do I start?" here's my advice:</p>
+
+        <p>
+          <strong>Identify Your Biggest Pain Point:</strong> What process in your business causes the most frustration or wastes the most time?
+        </p>
+
+        <p>
+          <strong>Start Small:</strong> You don't need to revolutionize everything at once. Pick one area and improve it.
+        </p>
+
+        <p>
+          <strong>Choose Partners, Not Just Vendors:</strong> Work with software providers who understand your industry and are committed to your success.
+        </p>
+
+        <p>
+          <strong>Invest in Training:</strong> The best software is useless if your team doesn't know how to use it effectively.
+        </p>
+
+        <p>
+          <strong>Measure and Adjust:</strong> Track how the changes affect your business and be willing to make adjustments.
+        </p>
+
+        <p>
+          The democratization of enterprise technology isn't just a trend – it's a fundamental shift in how business gets done. Companies that embrace this change will thrive, while those that resist will find themselves increasingly disadvantaged.
+        </p>
+
+        <p>
+          At Vision A2Z, we're proud to be part of this movement. Every time we help a school principal reclaim her evenings, an event planner reduce his stress, or a hospital administrator serve more patients, we're proving that extraordinary technology can indeed serve ordinary people.
+        </p>
+
+        <p>
+          The future belongs to businesses that are brave enough to simplify complexity and smart enough to embrace change. The tools are available, accessible, and ready to transform your operations. The only question is: are you ready to make the leap?
+        </p>
+
+        <div class="highlight-box">
+          <h4>Ready to Transform Your Business?</h4>
+          <p>
+            Ready to explore how enterprise software can transform your business? Contact Vision A2Z today and discover how we're bringing extraordinary technology to ordinary people across India.
+          </p>
+        </div>
+      </article>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">↑</button>
+
+
+    <div id="footer"></div>
+
+
+    <script>
+      // Scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.scroll-animate').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Back to top button
+      const backToTop = document.getElementById('backToTop');
+      
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      });
+
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Navigation scroll effect
+      const nav = document.querySelector('nav');
+      if (nav) {
+        window.addEventListener('scroll', () => {
+          if (window.pageYOffset > 100) {
+            nav.classList.add('scrolled');
+          } else {
+            nav.classList.remove('scrolled');
+          }
+        });
+      }
+
+      // Safe fetch for header and footer
+      fetch("/components/footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          const footerElement = document.getElementById("footer");
+          if (footerElement) {
+            footerElement.innerHTML = data;
+          }
+        })
+        .catch((error) => {
+          console.log('Footer component not found:', error);
+        });
+
+      fetch("../components/header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          const headerElement = document.getElementById("header");
+          if (headerElement) {
+            headerElement.innerHTML = data;
+          }
+        })
+        .catch((error) => {
+          console.log('Header component not found:', error);
+        });
+    </script>
+  </body>
+</html>
