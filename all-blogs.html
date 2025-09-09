@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog - Vision A2Z | Tech Insights & Industry Updates</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-black: #000000;
+        --primary-white: #ffffff;
+        --gray-100: #f8f9fa;
+        --gray-200: #e9ecef;
+        --gray-300: #dee2e6;
+        --gray-400: #ced4da;
+        --gray-500: #adb5bd;
+        --gray-600: #6c757d;
+        --gray-700: #495057;
+        --gray-800: #343a40;
+        --gray-900: #212529;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: var(--gray-800);
+        background-color: var(--primary-white);
+        overflow-x: hidden;
+      }
+
+      .orbitron {
+        font-family: "Orbitron", monospace;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 0;
+        transition: all 0.3s ease;
+        border-bottom: 1px solid var(--gray-200);
+      }
+
+      nav.scrolled {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-logo {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--primary-black);
+        text-decoration: none;
+        letter-spacing: -1px;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-menu a {
+        text-decoration: none;
+        color: var(--gray-700);
+        font-weight: 500;
+        transition: color 0.3s ease;
+        position: relative;
+      }
+
+      .nav-menu a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-black);
+        transition: width 0.3s ease;
+      }
+
+      .nav-menu a:hover,
+      .nav-menu a.active {
+        color: var(--primary-black);
+      }
+
+      .nav-menu a:hover::after,
+      .nav-menu a.active::after {
+        width: 100%;
+      }
+
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .mobile-menu span {
+        width: 25px;
+        height: 3px;
+        background: var(--primary-black);
+        margin: 3px 0;
+        transition: 0.3s;
+      }
+
+      /* Hero Section */
+      .blog-hero {
+        padding: 120px 0 80px;
+        background: linear-gradient(
+          135deg,
+          var(--gray-100) 0%,
+          var(--primary-white) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .blog-hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="none" stroke="%23000" stroke-width="0.1" opacity="0.1"/></svg>');
+        background-size: 50px 50px;
+        opacity: 0.3;
+      }
+
+      .blog-hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .blog-hero h1 {
+        font-size: clamp(3rem, 6vw, 4.5rem);
+        font-weight: 900;
+        color: var(--primary-black);
+        margin-bottom: 1rem;
+        letter-spacing: -2px;
+      }
+
+      .blog-hero p {
+        font-size: 1.3rem;
+        color: var(--gray-600);
+        max-width: 600px;
+        margin: 0 auto;
+        font-weight: 300;
+      }
+
+      /* Main Content */
+      .main-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+
+      /* Blog Grid */
+      .blog-grid {
+        display: grid;
+        gap: 2rem;
+      }
+
+      /* Article Card */
+      .article-card {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        gap: 2rem;
+        border: 1px solid var(--gray-200);
+        padding: 2rem;
+        transition: all 0.3s ease;
+        background: var(--primary-white);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .article-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .article-card:hover::before {
+        left: 100%;
+      }
+
+      .article-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        border-color: var(--primary-black);
+      }
+
+      .article-thumbnail {
+        width: 250px;
+        height: 150px;
+        background: linear-gradient(45deg, var(--gray-200) 25%, transparent 25%),
+          linear-gradient(-45deg, var(--gray-200) 25%, transparent 25%);
+        background-size: 15px 15px;
+        background-position: 0 0, 7px 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        border: 1px solid var(--gray-300);
+      }
+
+      .article-thumbnail::after {
+        content: "📰";
+        font-size: 2rem;
+        opacity: 0.3;
+      }
+
+      .article-content {
+        padding: 0;
+      }
+
+      .article-meta {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        color: var(--gray-500);
+        flex-wrap: wrap;
+      }
+
+      .article-tag {
+        background: var(--gray-100);
+        color: var(--gray-700);
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
+      .article-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--primary-black);
+        margin-bottom: 0.75rem;
+        line-height: 1.3;
+      }
+
+      .article-title a {
+        text-decoration: none;
+        color: inherit;
+        transition: color 0.3s ease;
+      }
+
+      .article-title a:hover {
+        color: var(--gray-700);
+      }
+
+      .article-excerpt {
+        color: var(--gray-600);
+        line-height: 1.6;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .read-more {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--primary-black);
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+      }
+
+      .read-more:hover {
+        gap: 1rem;
+      }
+
+      .read-more::after {
+        content: "→";
+        transition: transform 0.3s ease;
+      }
+
+      .read-more:hover::after {
+        transform: translateX(5px);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--gray-900);
+        color: var(--gray-300);
+        padding: 3rem 0 2rem;
+        margin-top: 4rem;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        text-align: center;
+      }
+
+      .footer-content p {
+        margin: 0;
+        font-size: 0.9rem;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-menu {
+          display: none;
+        }
+
+        .mobile-menu {
+          display: flex;
+        }
+
+        .article-card {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .article-thumbnail {
+          width: 100%;
+          height: 200px;
+        }
+
+        .blog-hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .blog-hero p {
+          font-size: 1.1rem;
+        }
+
+        .main-content {
+          padding: 2rem 1rem;
+        }
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 1;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in-up {
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      .scroll-animate {
+        opacity: 1;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .scroll-animate.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <div id="header"></div>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+      <div class="blog-hero-content fade-in-up">
+        <h1 class="orbitron">Our Blog</h1>
+        <p>
+          Insights, updates, and expert perspectives on enterprise software and
+          digital transformation.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="blog-grid">
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Enterprise Solutions</span>
+              <span>•</span>
+              <span>September 9, 2025</span>
+            </div>
+            <h2 class="article-title">
+              <a
+                href="/post/10-operational-bottlenecks-that-enterprise-software-can-eliminate-today"
+              >
+                10 Operational Bottlenecks That Enterprise Software Can
+                Eliminate Today
+              </a>
+            </h2>
+            <p class="article-excerpt">
+              Is your business struggling with manual processes, scattered
+              information, and constant firefighting? Discover the top 10
+              operational bottlenecks that are silently costing you time and
+              money, and learn how enterprise software can eliminate them
+              immediately.
+            </p>
+            <a
+              href="/post/10-operational-bottlenecks-that-enterprise-software-can-eliminate-today"
+              class="read-more"
+              >Read More</a
+            >
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Healthcare Technology</span>
+              <span>•</span>
+              <span>August 28, 2025</span>
+            </div>
+            <h2 class="article-title">
+              <a
+                href="/post/healthcare-goes-digital-streamlining-hospital-operations-with-integrated-management-systems"
+              >
+                Healthcare Goes Digital: Streamlining Hospital Operations with
+                Integrated Management Systems
+              </a>
+            </h2>
+            <p class="article-excerpt">
+              Explore how modern hospitals are revolutionizing patient care and
+              operational efficiency through comprehensive digital
+              transformation and integrated management platforms.
+            </p>
+            <a
+              href="/post/healthcare-goes-digital-streamlining-hospital-operations-with-integrated-management-systems"
+              class="read-more"
+              >Read More</a
+            >
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Education Technology</span>
+              <span>•</span>
+              <span>August 25, 2025</span>
+            </div>
+            <h2 class="article-title">
+              <a
+                href="/post/the-digital-classroom-revolution-how-schools-a2z-is-reshaping-education-management"
+              >
+                The Digital Classroom Revolution: How Schools A2Z is Reshaping
+                Education Management
+              </a>
+            </h2>
+            <p class="article-excerpt">
+              Discover how educational institutions are transforming their
+              operations with comprehensive school management systems that
+              enhance learning outcomes and administrative efficiency.
+            </p>
+            <a
+              href="/post/the-digital-classroom-revolution-how-schools-a2z-is-reshaping-education-management"
+              class="read-more"
+              >Read More</a
+            >
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Event Management</span>
+              <span>•</span>
+              <span>August 22, 2025</span>
+            </div>
+            <h2 class="article-title">
+              <a
+                href="/post/event-management-in-2025-beyond-spreadsheets-to-smart-automation"
+              >
+                Event Management in 2025: Beyond Spreadsheets to Smart
+                Automation
+              </a>
+            </h2>
+            <p class="article-excerpt">
+              Learn how event management is evolving from manual processes to
+              intelligent automation, delivering better experiences for
+              organizers and attendees alike.
+            </p>
+            <a
+              href="/post/event-management-in-2025-beyond-spreadsheets-to-smart-automation"
+              class="read-more"
+              >Read More</a
+            >
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Case Study</span>
+              <span>•</span>
+              <span>August 20, 2025</span>
+            </div>
+            <h2 class="article-title">
+              <a
+                href="/post/event-planning-success-how-events-a2z-delivered-a-flawless-5000-person-conference"
+              >
+                Event Planning Success: How Events A2Z Delivered a Flawless
+                5,000-Person Conference
+              </a>
+            </h2>
+            <p class="article-excerpt">
+              A detailed case study of how comprehensive event management
+              software enabled the seamless execution of a large-scale corporate
+              conference with thousands of attendees.
+            </p>
+            <a
+              href="/post/event-planning-success-how-events-a2z-delivered-a-flawless-5000-person-conference"
+              class="read-more"
+              >Read More</a
+            >
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Digital Transformation</span>
+              <span>•</span>
+              <span>August 18, 2025</span>
+            </div>
+            <h2 class="article-title">
+              <a
+                href="/post/breaking-down-silos-how-comprehensive-digital-platforms-transform-operations"
+              >
+                Breaking Down Silos: How Comprehensive Digital Platforms
+                Transform Operations
+              </a>
+            </h2>
+            <p class="article-excerpt">
+              Understand how integrated digital platforms eliminate
+              organizational silos and create seamless workflows that boost
+              productivity and collaboration.
+            </p>
+            <a
+              href="/post/breaking-down-silos-how-comprehensive-digital-platforms-transform-operations"
+              class="read-more"
+              >Read More</a
+            >
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Business Intelligence</span>
+              <span>•</span>
+              <span>August 15, 2025</span>
+            </div>
+            <h2 class="article-title">
+              <a
+                href="/post/from-reactive-to-predictive-how-modern-software-transforms-business-intelligence"
+              >
+                From Reactive to Predictive: How Modern Software Transforms
+                Business Intelligence
+              </a>
+            </h2>
+            <p class="article-excerpt">
+              Explore the shift from traditional reactive reporting to
+              predictive analytics and how modern enterprise software enables
+              data-driven decision making.
+            </p>
+            <a
+              href="/post/from-reactive-to-predictive-how-modern-software-transforms-business-intelligence"
+              class="read-more"
+              >Read More</a
+            >
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">ROI Analysis</span>
+              <span>•</span>
+              <span>August 12, 2025</span>
+            </div>
+            <h2 class="article-title">
+              <a
+                href="/post/the-roi-of-integrated-software-real-cost-savings-from-vision-a2z-clients"
+              >
+                The ROI of Integrated Software: Real Cost Savings from Vision
+                A2Z Clients
+              </a>
+            </h2>
+            <p class="article-excerpt">
+              Discover real-world examples of how Vision A2Z clients have
+              achieved significant cost savings and efficiency gains through
+              integrated software solutions.
+            </p>
+            <a
+              href="/post/the-roi-of-integrated-software-real-cost-savings-from-vision-a2z-clients"
+              class="read-more"
+              >Read More</a
+            >
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Digital Transformation</span>
+              <span>•</span>
+              <span>August 10, 2025</span>
+            </div>
+            <h2 class="article-title">
+              <a
+                href="/post/the_future_of_digital_transformation_why_every_business_needs_an_integrated_software_ecosystem"
+              >
+                The Future of Digital Transformation: Why Every Business Needs
+                an Integrated Software Ecosystem
+              </a>
+            </h2>
+            <p class="article-excerpt">
+              Understanding the critical role of integrated software ecosystems
+              in future-proofing businesses and driving sustainable growth in
+              the digital age.
+            </p>
+            <a
+              href="/post/the_future_of_digital_transformation_why_every_business_needs_an_integrated_software_ecosystem"
+              class="read-more"
+              >Read More</a
+            >
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Technology Philosophy</span>
+              <span>•</span>
+              <span>August 8, 2025</span>
+            </div>
+            <h2 class="article-title">
+              <a
+                href="/post/how_enterprise_software_is_democratizing_advanced_technology"
+              >
+                How Enterprise Software is Democratizing Advanced Technology
+              </a>
+            </h2>
+            <p class="article-excerpt">
+              Explore how enterprise software has evolved from exclusive,
+              expensive solutions to accessible tools that empower businesses of
+              all sizes to leverage advanced technology.
+            </p>
+            <a
+              href="/post/how_enterprise_software_is_democratizing_advanced_technology"
+              class="read-more"
+              >Read More</a
+            >
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Business Assessment</span>
+              <span>•</span>
+              <span>August 5, 2025</span>
+            </div>
+            <h2 class="article-title">
+              <a
+                href="/post/5-signs-your-business-is-ready-for-enterprise-level-software-solutions"
+              >
+                5 Signs Your Business is Ready for Enterprise-Level Software
+                Solutions
+              </a>
+            </h2>
+            <p class="article-excerpt">
+              Learn to identify the key indicators that signal your business is
+              ready to transition from basic tools to comprehensive enterprise
+              software solutions.
+            </p>
+            <a
+              href="/post/5-signs-your-business-is-ready-for-enterprise-level-software-solutions"
+              class="read-more"
+              >Read More</a
+            >
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Customer Support</span>
+              <span>•</span>
+              <span>August 3, 2025</span>
+            </div>
+            <h2 class="article-title">
+              <a
+                href="/post/why-24-7-support-matters-more-than-you-think-in-enterprise-software"
+              >
+                Why 24/7 Support Matters More Than You Think in Enterprise
+                Software
+              </a>
+            </h2>
+            <p class="article-excerpt">
+              Discover why round-the-clock technical support is not just a
+              luxury but a necessity for businesses relying on enterprise
+              software solutions.
+            </p>
+            <a
+              href="/post/why-24-7-support-matters-more-than-you-think-in-enterprise-software"
+              class="read-more"
+              >Read More</a
+            >
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Customization</span>
+              <span>•</span>
+              <span>August 1, 2025</span>
+            </div>
+            <h2 class="article-title">
+              <a
+                href="/post/the-myth-of-one-size-fits-all-why-custom-enterprise-solutions-win-every-time"
+              >
+                The Myth of One-Size-Fits-All: Why Custom Enterprise Solutions
+                Win Every Time
+              </a>
+            </h2>
+            <p class="article-excerpt">
+              Understanding why businesses need tailored software solutions
+              rather than generic platforms, and how customization drives better
+              outcomes.
+            </p>
+            <a
+              href="/post/the-myth-of-one-size-fits-all-why-custom-enterprise-solutions-win-every-time"
+              class="read-more"
+              >Read More</a
+            >
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Small Business</span>
+              <span>•</span>
+              <span>July 30, 2025</span>
+            </div>
+            <h2 class="article-title">
+              <a
+                href="/post/small-business-enterprise-solutions-scaling-your-operations-without-breaking-the-bank"
+              >
+                Small Business, Enterprise Solutions: Scaling Your Operations
+                Without Breaking the Bank
+              </a>
+            </h2>
+            <p class="article-excerpt">
+              Learn how small and medium-sized businesses can access
+              enterprise-grade software solutions without the traditional high
+              costs and complexity.
+            </p>
+            <a
+              href="/post/small-business-enterprise-solutions-scaling-your-operations-without-breaking-the-bank"
+              class="read-more"
+              >Read More</a
+            >
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Regional Development</span>
+              <span>•</span>
+              <span>July 28, 2025</span>
+            </div>
+            <h2 class="article-title">
+              <a
+                href="/post/bridging-the-digital-divide-bringing-world-class-technology-to-regional-businesses"
+              >
+                Bridging the Digital Divide: Bringing World-Class Technology to
+                Regional Businesses
+              </a>
+            </h2>
+            <p class="article-excerpt">
+              Exploring how technology companies are making enterprise-grade
+              solutions accessible to businesses in tier-2 and tier-3 cities
+              across India.
+            </p>
+            <a
+              href="/post/bridging-the-digital-divide-bringing-world-class-technology-to-regional-businesses"
+              class="read-more"
+              >Read More</a
+            >
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Education Technology</span>
+              <span>•</span>
+              <span>July 25, 2025</span>
+            </div>
+            <h2 class="article-title">
+              <a
+                href="/post/why-educational-institutions-are-moving-from-multiple-platforms-to-all-in-one-solutions"
+              >
+                Why Educational Institutions are Moving from Multiple Platforms
+                to All-in-One Solutions
+              </a>
+            </h2>
+            <p class="article-excerpt">
+              Understanding the trend of educational institutions consolidating
+              their technology stack into comprehensive, integrated management
+              systems.
+            </p>
+            <a
+              href="/post/why-educational-institutions-are-moving-from-multiple-platforms-to-all-in-one-solutions"
+              class="read-more"
+              >Read More</a
+            >
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Technology Stack</span>
+              <span>•</span>
+              <span>July 22, 2025</span>
+            </div>
+            <h2 class="article-title">
+              <a
+                href="/post/enterprise-software-success-why-angular-powers-vision-a2zs-scalable-solutions"
+              >
+                Enterprise Software Success: Why Angular Powers Vision A2Z's
+                Scalable Solutions
+              </a>
+            </h2>
+            <p class="article-excerpt">
+              A technical deep-dive into how Angular framework enables the
+              development of robust, scalable enterprise applications that serve
+              diverse business needs.
+            </p>
+            <a
+              href="/post/enterprise-software-success-why-angular-powers-vision-a2zs-scalable-solutions"
+              class="read-more"
+              >Read More</a
+            >
+          </div>
+        </article>
+
+        <article class="article-card scroll-animate">
+          <div class="article-thumbnail"></div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-tag">Tamil Content</span>
+              <span>•</span>
+              <span>July 20, 2025</span>
+            </div>
+            <h2 class="article-title">
+              <a
+                href="/post/சிறு-நிறுவனங்களுக்கு-பெரிய-தொழில்நுட்பம்-a-guide-to-enterprise-software-in-tamil-nadu"
+              >
+                சிறு நிறுவனங்களுக்கு பெரிய தொழில்நுட்பம்: A Guide to Enterprise
+                Software in Tamil Nadu
+              </a>
+            </h2>
+            <p class="article-excerpt">
+              Tamil Nadu's small and medium businesses can now access
+              world-class enterprise software solutions. Learn how technology is
+              empowering regional businesses across the state.
+            </p>
+            <a
+              href="/post/சிறு-நிறுவனங்களுக்கு-பெரிய-தொழில்நுட்பம்-a-guide-to-enterprise-software-in-tamil-nadu"
+              class="read-more"
+              >Read More</a
+            >
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+  </body>
+
+  <script>
+    fetch("components/footer.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("footer").innerHTML = data;
+      });
+
+    fetch("components/header.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("header").innerHTML = data;
+      });
+  </script>
+</html>

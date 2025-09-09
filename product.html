@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products - Vision A2Z | Enterprise Software Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-black: #000000;
+        --primary-white: #ffffff;
+        --gray-100: #f8f9fa;
+        --gray-200: #e9ecef;
+        --gray-300: #dee2e6;
+        --gray-400: #ced4da;
+        --gray-500: #adb5bd;
+        --gray-600: #6c757d;
+        --gray-700: #495057;
+        --gray-800: #343a40;
+        --gray-900: #212529;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: var(--gray-800);
+        background-color: var(--primary-white);
+        overflow-x: hidden;
+      }
+
+      .orbitron {
+        font-family: "Orbitron", monospace;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 0;
+        transition: all 0.3s ease;
+      }
+
+      nav.scrolled {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-logo {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--primary-black);
+        text-decoration: none;
+        letter-spacing: -1px;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-menu a {
+        text-decoration: none;
+        color: var(--gray-700);
+        font-weight: 500;
+        transition: color 0.3s ease;
+        position: relative;
+      }
+
+      .nav-menu a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-black);
+        transition: width 0.3s ease;
+      }
+
+      .nav-menu a:hover,
+      .nav-menu a.active {
+        color: var(--primary-black);
+      }
+
+      .nav-menu a:hover::after,
+      .nav-menu a.active::after {
+        width: 100%;
+      }
+
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .mobile-menu span {
+        width: 25px;
+        height: 3px;
+        background: var(--primary-black);
+        margin: 3px 0;
+        transition: 0.3s;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          135deg,
+          var(--gray-100) 0%,
+          var(--primary-white) 100%
+        );
+        position: relative;
+        overflow: hidden;
+        padding-top: 80px;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="none" stroke="%23000" stroke-width="0.1" opacity="0.1"/></svg>');
+        background-size: 50px 50px;
+        opacity: 0.3;
+      }
+
+      .hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-title {
+        font-size: clamp(3rem, 8vw, 5rem);
+        font-weight: 900;
+        color: var(--primary-black);
+        margin-bottom: 1rem;
+        letter-spacing: -2px;
+      }
+
+      .hero-subtitle {
+        font-size: 1.3rem;
+        color: var(--gray-600);
+        margin-bottom: 2rem;
+        font-weight: 300;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Product Navigation */
+      .product-nav {
+        background: var(--primary-white);
+        border-bottom: 1px solid var(--gray-200);
+        padding: 2rem 0;
+        position: sticky;
+        top: 80px;
+        z-index: 999;
+      }
+
+      .product-nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .product-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .product-tab {
+        padding: 1rem 2rem;
+        background: transparent;
+        border: 2px solid var(--gray-300);
+        color: var(--gray-600);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .product-tab:hover,
+      .product-tab.active {
+        background: var(--primary-black);
+        color: var(--primary-white);
+        border-color: var(--primary-black);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .product-tab-icon {
+        font-size: 1.2rem;
+      }
+
+      /* Section Styles */
+      section {
+        padding: 6rem 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* Product Sections */
+      .product-section {
+        opacity: 1;
+        transform: translateY(50px);
+        transition: all 0.6s ease;
+      }
+
+      .product-section.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .product-hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        margin-bottom: 6rem;
+      }
+
+      .product-info h2 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 900;
+        color: var(--primary-black);
+        margin-bottom: 1.5rem;
+        letter-spacing: -1px;
+      }
+
+      .product-tagline {
+        font-size: 1.3rem;
+        color: var(--gray-600);
+        margin-bottom: 2rem;
+        font-weight: 500;
+        font-style: italic;
+      }
+
+      .product-description {
+        font-size: 1.1rem;
+        color: var(--gray-700);
+        line-height: 1.8;
+        margin-bottom: 2.5rem;
+      }
+
+      .product-demo-visual {
+        background: linear-gradient(45deg, var(--gray-200) 25%, transparent 25%),
+          linear-gradient(-45deg, var(--gray-200) 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, var(--gray-200) 75%),
+          linear-gradient(-45deg, transparent 75%, var(--gray-200) 75%);
+        background-size: 40px 40px;
+        background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+        height: 400px;
+        border: 2px solid var(--gray-300);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .product-demo-visual:hover {
+        border-color: var(--primary-black);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .demo-icon {
+        font-size: 4rem;
+        opacity: 0.4;
+      }
+
+      .btn {
+        padding: 1rem 2rem;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .btn-primary {
+        background: var(--primary-black);
+        color: var(--primary-white);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--primary-black);
+        border: 2px solid var(--primary-black);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn-secondary:hover {
+        background: var(--primary-black);
+        color: var(--primary-white);
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      /* Features Grid */
+      .features-section {
+        margin-bottom: 6rem;
+      }
+
+      .features-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-black);
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .feature-card {
+        background: var(--primary-white);
+        padding: 2.5rem 2rem;
+        border: 2px solid var(--gray-200);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 0, 0, 0.02),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .feature-card:hover::before {
+        left: 100%;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border-color: var(--primary-black);
+      }
+
+      .feature-icon {
+        display: none;
+        width: 60px;
+        height: 60px;
+        background: var(--gray-100);
+        border: 2px solid var(--gray-300);
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover .feature-icon {
+        background: var(--primary-black);
+        color: var(--primary-white);
+        border-color: var(--primary-black);
+      }
+
+      .feature-card h3 {
+        font-size: 1.3rem;
+        color: var(--primary-black);
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .feature-card p {
+        color: var(--gray-600);
+        line-height: 1.7;
+      }
+
+      /* Benefits Section */
+      .benefits-section {
+        background: var(--gray-100);
+        padding: 4rem 0;
+        margin: 4rem 0;
+      }
+
+      .benefits-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary-black);
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+
+      .benefits-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .benefit-item {
+        background: var(--primary-white);
+        padding: 1.5rem;
+        border-left: 4px solid var(--primary-black);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .benefit-item:hover {
+        transform: translateX(10px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .benefit-icon {
+        display: none;
+        font-size: 1.5rem;
+        color: var(--primary-black);
+      }
+
+      .benefit-text {
+        font-weight: 500;
+        color: var(--gray-700);
+      }
+
+      /* Comparison Table */
+      .comparison-section {
+        margin: 6rem 0;
+      }
+
+      .comparison-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-black);
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .comparison-table {
+        background: var(--primary-white);
+        border: 2px solid var(--gray-300);
+        overflow: hidden;
+      }
+
+      .table-header {
+        background: var(--primary-black);
+        color: var(--primary-white);
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 0;
+      }
+
+      .table-header div {
+        padding: 1.5rem;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .table-row {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 0;
+        border-bottom: 1px solid var(--gray-200);
+      }
+
+      .table-row:nth-child(even) {
+        background: var(--gray-100);
+      }
+
+      .table-row:hover {
+        background: rgba(0, 0, 0, 0.02);
+      }
+
+      .table-cell {
+        padding: 1rem 1.5rem;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .table-cell:first-child {
+        text-align: left;
+        font-weight: 500;
+        color: var(--gray-800);
+      }
+
+      .check-icon {
+        color: var(--primary-black);
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      .cross-icon {
+        color: var(--gray-400);
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      /* CTA Section */
+      .product-cta {
+        background: var(--primary-black);
+        color: var(--primary-white);
+        text-align: center;
+        padding: 4rem 0;
+        margin-top: 4rem;
+      }
+
+      .cta-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+      }
+
+      .cta-description {
+        font-size: 1.2rem;
+        color: var(--gray-300);
+        margin-bottom: 2.5rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .btn-white {
+        background: var(--primary-white);
+        color: var(--primary-black);
+      }
+
+      .btn-white:hover {
+        background: var(--gray-200);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--gray-900);
+        color: var(--gray-300);
+        padding: 2rem 0;
+        text-align: center;
+      }
+
+      footer .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      footer p {
+        margin: 0;
+        font-size: 0.9rem;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-menu {
+          display: none;
+        }
+
+        .mobile-menu {
+          display: flex;
+        }
+
+        .product-hero {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .benefits-list {
+          grid-template-columns: 1fr;
+        }
+
+        .table-header,
+        .table-row {
+          grid-template-columns: 2fr 1fr 1fr;
+          font-size: 0.9rem;
+        }
+
+        .table-cell {
+          padding: 0.8rem 0.5rem;
+        }
+
+        .product-tabs {
+          justify-content: flex-start;
+          overflow-x: auto;
+          padding-bottom: 0.5rem;
+        }
+
+        .btn-group {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 1;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in-up {
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      .scroll-animate {
+        opacity: 1;
+        transform: translateY(50px);
+        transition: all 0.6s ease;
+      }
+
+      .scroll-animate.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <div id="header"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content fade-in-up">
+        <h1 class="hero-title orbitron">Our Products</h1>
+        <p class="hero-subtitle">
+          Comprehensive enterprise solutions designed to transform how you
+          manage events, education, and healthcare operations. Discover the
+          power of integrated, user-friendly software.
+        </p>
+      </div>
+    </section>
+
+    <!-- Product Navigation -->
+    <!-- <div class="product-nav">
+      <div class="product-nav-container">
+        <div class="product-tabs">
+          <a
+            href="#events-a2z"
+            class="product-tab active"
+            data-product="events"
+          >
+            <span class="product-tab-icon">🎪</span>
+            Events A2Z
+          </a>
+          <a href="#schools-a2z" class="product-tab" data-product="schools">
+            <span class="product-tab-icon">🎓</span>
+            Schools A2Z
+          </a>
+          <a href="#hospital-a2z" class="product-tab" data-product="hospital">
+            <span class="product-tab-icon">🏥</span>
+            Hospital A2Z
+          </a>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Events A2Z Section -->
+    <section id="events-a2z" class="product-section active">
+      <div class="container">
+        <!-- Product Hero -->
+        <div class="product-hero scroll-animate">
+          <div class="product-info">
+            <h2 class="orbitron">Events A2Z</h2>
+            <p class="product-tagline">"From Planning to Perfection"</p>
+            <p class="product-description">
+              Transform your event management with our comprehensive platform
+              that handles everything from initial planning to post-event
+              analysis. Whether you're organizing corporate conferences,
+              weddings, festivals, or intimate gatherings, Events A2Z
+              streamlines every aspect of your event lifecycle.
+            </p>
+            <div class="btn-group">
+              <a href="#" class="btn btn-primary"> Request Demo </a>
+              <a href="#" class="btn btn-secondary">Learn More </a>
+            </div>
+          </div>
+          <div class="product-demo-visual">
+            <div class="demo-icon">🎪</div>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div class="features-section scroll-animate">
+          <h3 class="features-title orbitron">Key Features</h3>
+          <div class="features-grid">
+            <div class="feature-card">
+              <h3>Event Planning & Scheduling</h3>
+              <p>
+                Comprehensive timeline management with automated reminders,
+                milestone tracking, and collaborative planning tools for
+                seamless event coordination.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Vendor Management</h3>
+              <p>
+                Centralized vendor database with contract management, payment
+                tracking, performance reviews, and automated communication
+                workflows.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Attendee Registration</h3>
+              <p>
+                Customizable registration forms, payment processing, QR code
+                ticketing, and automated confirmation emails with attendee
+                management.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Budget Tracking</h3>
+              <p>
+                Real-time financial monitoring with expense categorization,
+                profit analysis, automated invoicing, and comprehensive
+                financial reporting.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Mobile Event App</h3>
+              <p>
+                Custom-branded mobile apps for attendees with schedules,
+                networking features, live updates, and interactive event maps.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Analytics & Reporting</h3>
+              <p>
+                Detailed post-event analytics with attendee feedback, ROI
+                calculations, performance metrics, and actionable insights for
+                future events.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Benefits -->
+        <div class="benefits-section">
+          <div class="container">
+            <h3 class="benefits-title">Why Choose Events A2Z?</h3>
+            <div class="benefits-list">
+              <div class="benefit-item">
+                <div class="benefit-icon">⚡</div>
+                <div class="benefit-text">
+                  Reduce planning time by up to 60%
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-text">Cut operational costs by 35%</div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-text">
+                  Increase attendee satisfaction rates
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-text">Streamline vendor coordination</div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-text">Improve event ROI tracking</div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-text">Enhanced project management</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schools A2Z Section -->
+    <section id="schools-a2z" class="product-section">
+      <div class="container">
+        <!-- Product Hero -->
+        <div class="product-hero scroll-animate">
+          <div class="product-info">
+            <h2 class="orbitron">Schools A2Z</h2>
+            <p class="product-tagline">"Educating Through Technology"</p>
+            <p class="product-description">
+              Revolutionize educational administration with our integrated
+              school management system. From student admissions to graduation,
+              Schools A2Z handles every aspect of educational institution
+              management while enhancing the learning experience for students,
+              teachers, and parents.
+            </p>
+            <div class="btn-group">
+              <a href="#" class="btn btn-primary"> Request Demo </a>
+              <a href="#" class="btn btn-secondary">Learn More </a>
+            </div>
+          </div>
+          <div class="product-demo-visual">
+            <div class="demo-icon">🎓</div>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div class="features-section scroll-animate">
+          <h3 class="features-title orbitron">Key Features</h3>
+          <div class="features-grid">
+            <div class="feature-card">
+              <h3>Academic Management</h3>
+              <p>
+                Comprehensive curriculum planning, grade management, assignment
+                tracking, and academic performance analytics with automated
+                report generation.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Student Information System</h3>
+              <p>
+                Complete student lifecycle management from admission to
+                graduation with digital records, attendance tracking, and
+                progress monitoring.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Teacher Portal</h3>
+              <p>
+                Integrated teaching tools with lesson planning, gradebook
+                management, parent communication, and professional development
+                tracking.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Parent Engagement</h3>
+              <p>
+                Real-time access to student progress, attendance, assignments,
+                and direct communication channels with teachers and
+                administrators.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Fee Management</h3>
+              <p>
+                Automated fee collection with online payment processing,
+                installment tracking, scholarship management, and financial
+                reporting.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Campus Management</h3>
+              <p>
+                Facility scheduling, transportation management, library system
+                integration, and comprehensive administrative workflows.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Benefits -->
+        <div class="benefits-section">
+          <div class="container">
+            <h3 class="benefits-title">
+              Transform Your Educational Institution
+            </h3>
+            <div class="benefits-list">
+              <div class="benefit-item">
+                <div class="benefit-icon">📊</div>
+                <div class="benefit-text">
+                  Improve academic performance tracking
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon">⏰</div>
+                <div class="benefit-text">
+                  Save 40+ hours weekly on administration
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon">👨‍👩‍👧‍👦</div>
+                <div class="benefit-text">
+                  Enhance parent-school communication
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon">🎯</div>
+                <div class="benefit-text">Streamline admissions process</div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon">📱</div>
+                <div class="benefit-text">
+                  Mobile access for all stakeholders
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon">🔒</div>
+                <div class="benefit-text">Secure student data management</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hospital A2Z Section -->
+    <section id="hospital-a2z" class="product-section">
+      <div class="container">
+        <!-- Product Hero -->
+        <div class="product-hero scroll-animate">
+          <div class="product-info">
+            <h2 class="orbitron">Hospital A2Z</h2>
+            <p class="product-tagline">"Caring Through Technology"</p>
+            <p class="product-description">
+              Modernize healthcare delivery with our comprehensive hospital
+              management system. Hospital A2Z integrates patient care,
+              administrative operations, and clinical workflows to improve
+              patient outcomes while reducing operational complexity and costs.
+            </p>
+            <div class="btn-group">
+              <a href="#" class="btn btn-primary"> Request Demo </a>
+              <a href="#" class="btn btn-secondary"> Learn More </a>
+            </div>
+          </div>
+          <div class="product-demo-visual">
+            <div class="demo-icon">🏥</div>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div class="features-section scroll-animate">
+          <h3 class="features-title orbitron">Key Features</h3>
+          <div class="features-grid">
+            <div class="feature-card">
+              <h3>Patient Management</h3>
+              <p>
+                Complete patient lifecycle management with electronic health
+                records, appointment scheduling, medical history tracking, and
+                care coordination.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Bed & Resource Management</h3>
+              <p>
+                Real-time bed occupancy tracking, equipment management, resource
+                allocation optimization, and automated workflow coordination.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Pharmacy Integration</h3>
+              <p>
+                Integrated pharmacy management with prescription tracking,
+                inventory control, drug interaction alerts, and automated
+                dispensing systems.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Laboratory Management</h3>
+              <p>
+                Complete lab workflow management with test ordering, result
+                tracking, quality control, and seamless integration with patient
+                records.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Billing & Insurance</h3>
+              <p>
+                Automated billing systems with insurance claim processing,
+                payment tracking, financial reporting, and compliance
+                management.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Clinical Documentation</h3>
+              <p>
+                Digital documentation with customizable templates, clinical
+                decision support, audit trails, and regulatory compliance
+                features.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Benefits -->
+        <div class="benefits-section">
+          <div class="container">
+            <h3 class="benefits-title">Revolutionize Healthcare Delivery</h3>
+            <div class="benefits-list">
+              <div class="benefit-item">
+                <div class="benefit-text">Improve patient care quality</div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-text">Reduce patient wait times by 45%</div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-text">Enhance operational efficiency</div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-text">
+                  Optimize revenue cycle management
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-text">Ensure HIPAA compliance</div>
+              </div>
+              <div class="benefit-item">    
+                <div class="benefit-text">
+                  Mobile access for healthcare providers
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section
+      class="comparison-section"
+      style="background: var(--primary-white); padding: 6rem 0"
+    >
+      <div class="container">
+        <h2 class="comparison-title orbitron scroll-animate">
+          Why Choose Vision A2Z?
+        </h2>
+        <div class="comparison-table scroll-animate">
+          <div class="table-header">
+            <div>Features</div>
+            <div>Traditional Solutions</div>
+            <div>Vision A2Z</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">User-Friendly Interface</div>
+            <div class="table-cell"><span class="cross-icon">✗</span></div>
+            <div class="table-cell"><span class="check-icon">✓</span></div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">Integrated Modules</div>
+            <div class="table-cell"><span class="cross-icon">✗</span></div>
+            <div class="table-cell"><span class="check-icon">✓</span></div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">Mobile Accessibility</div>
+            <div class="table-cell"><span class="cross-icon">✗</span></div>
+            <div class="table-cell"><span class="check-icon">✓</span></div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">24/7 Support</div>
+            <div class="table-cell"><span class="cross-icon">✗</span></div>
+            <div class="table-cell"><span class="check-icon">✓</span></div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">Affordable Pricing</div>
+            <div class="table-cell"><span class="cross-icon">✗</span></div>
+            <div class="table-cell"><span class="check-icon">✓</span></div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">Cloud-Based Solution</div>
+            <div class="table-cell"><span class="cross-icon">✗</span></div>
+            <div class="table-cell"><span class="check-icon">✓</span></div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">Real-time Analytics</div>
+            <div class="table-cell"><span class="cross-icon">✗</span></div>
+            <div class="table-cell"><span class="check-icon">✓</span></div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">Customizable Workflows</div>
+            <div class="table-cell"><span class="cross-icon">✗</span></div>
+            <div class="table-cell"><span class="check-icon">✓</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <script>
+      // Navbar scroll effect
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("navbar");
+        if (window.scrollY > 100) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // Product tab switching
+      const productTabs = document.querySelectorAll(".product-tab");
+      const productSections = document.querySelectorAll(".product-section");
+
+      productTabs.forEach((tab) => {
+        tab.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          // Remove active class from all tabs and sections
+          productTabs.forEach((t) => t.classList.remove("active"));
+          productSections.forEach((s) => s.classList.remove("active"));
+
+          // Add active class to clicked tab
+          tab.classList.add("active");
+
+          // Show corresponding section
+          const targetId = tab.getAttribute("href").substring(1);
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) {
+            targetSection.classList.add("active");
+          }
+        });
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".scroll-animate").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Mobile menu toggle
+      const mobileMenu = document.querySelector(".mobile-menu");
+      const navMenu = document.querySelector(".nav-menu");
+
+      if (mobileMenu && navMenu) {
+        mobileMenu.addEventListener("click", () => {
+          navMenu.style.display =
+            navMenu.style.display === "flex" ? "none" : "flex";
+        });
+      }
+
+      // Feature card hover effects
+      const featureCards = document.querySelectorAll(".feature-card");
+      featureCards.forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.borderColor = "var(--primary-black)";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.borderColor = "var(--gray-200)";
+        });
+      });
+
+      // Product demo visual hover effects
+      const demoVisuals = document.querySelectorAll(".product-demo-visual");
+      demoVisuals.forEach((visual) => {
+        visual.addEventListener("mouseenter", function () {
+          const icon = this.querySelector(".demo-icon");
+          icon.style.transform = "scale(1.1) rotate(5deg)";
+          icon.style.transition = "all 0.3s ease";
+        });
+
+        visual.addEventListener("mouseleave", function () {
+          const icon = this.querySelector(".demo-icon");
+          icon.style.transform = "scale(1) rotate(0deg)";
+        });
+      });
+
+      // Benefit items animation on scroll
+      const benefitItems = document.querySelectorAll(".benefit-item");
+      const benefitObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+              }, index * 100);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      benefitItems.forEach((item) => {
+        item.style.opacity = "0";
+        item.style.transform = "translateY(20px)";
+        item.style.transition = "all 0.4s ease";
+        benefitObserver.observe(item);
+      });
+
+      // Table row hover effects
+      const tableRows = document.querySelectorAll(".table-row");
+      tableRows.forEach((row) => {
+        row.addEventListener("mouseenter", function () {
+          this.style.background = "rgba(0, 0, 0, 0.05)";
+          this.style.transform = "translateX(5px)";
+        });
+
+        row.addEventListener("mouseleave", function () {
+          this.style.background = "";
+          this.style.transform = "translateX(0)";
+        });
+      });
+
+      // Initialize first product section as active
+      document.addEventListener("DOMContentLoaded", function () {
+        const firstSection = document.getElementById("events-a2z");
+        if (firstSection) {
+          firstSection.classList.add("active");
+        }
+      });
+
+      // Button click animations
+      const buttons = document.querySelectorAll(".btn");
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", function (e) {
+          // Create ripple effect
+          const ripple = document.createElement("span");
+          const rect = this.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          const x = e.clientX - rect.left - size / 2;
+          const y = e.clientY - rect.top - size / 2;
+
+          ripple.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(${x}px, ${y}px) scale(0);
+            animation: ripple 0.6s ease-out;
+            pointer-events: none;
+          `;
+
+          this.style.position = "relative";
+          this.style.overflow = "hidden";
+          this.appendChild(ripple);
+
+          setTimeout(() => {
+            ripple.remove();
+          }, 600);
+        });
+      });
+
+      // Add ripple animation CSS
+      const style = document.createElement("style");
+      style.textContent = `
+        @keyframes ripple {
+          to {
+            transform: translate(var(--x), var(--y)) scale(4);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+
+
+      fetch("components/footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        });
+
+        fetch("components/header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header").innerHTML = data;
+        });
+    </script>
+  </body>
+</html>

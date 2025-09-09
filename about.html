@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Vision A2Z | Enterprise Software Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-black: #000000;
+        --primary-white: #ffffff;
+        --gray-100: #f8f9fa;
+        --gray-200: #e9ecef;
+        --gray-300: #dee2e6;
+        --gray-400: #ced4da;
+        --gray-500: #adb5bd;
+        --gray-600: #6c757d;
+        --gray-700: #495057;
+        --gray-800: #343a40;
+        --gray-900: #212529;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: var(--gray-800);
+        background-color: var(--primary-white);
+        overflow-x: hidden;
+      }
+
+      .orbitron {
+        font-family: "Orbitron", monospace;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 0;
+        transition: all 0.3s ease;
+      }
+
+      nav.scrolled {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-logo {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--primary-black);
+        text-decoration: none;
+        letter-spacing: -1px;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-menu a {
+        text-decoration: none;
+        color: var(--gray-700);
+        font-weight: 500;
+        transition: color 0.3s ease;
+        position: relative;
+      }
+
+      .nav-menu a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-black);
+        transition: width 0.3s ease;
+      }
+
+      .nav-menu a:hover,
+      .nav-menu a.active {
+        color: var(--primary-black);
+      }
+
+      .nav-menu a:hover::after,
+      .nav-menu a.active::after {
+        width: 100%;
+      }
+
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .mobile-menu span {
+        width: 25px;
+        height: 3px;
+        background: var(--primary-black);
+        margin: 3px 0;
+        transition: 0.3s;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          135deg,
+          var(--gray-100) 0%,
+          var(--primary-white) 100%
+        );
+        position: relative;
+        overflow: hidden;
+        padding-top: 80px;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="none" stroke="%23000" stroke-width="0.1" opacity="0.1"/></svg>');
+        background-size: 50px 50px;
+        opacity: 0.3;
+      }
+
+      .hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-title {
+        font-size: clamp(3rem, 8vw, 5rem);
+        font-weight: 900;
+        color: var(--primary-black);
+        margin-bottom: 1rem;
+        letter-spacing: -2px;
+      }
+
+      .hero-subtitle {
+        font-size: 1.3rem;
+        color: var(--gray-600);
+        margin-bottom: 1rem;
+        font-weight: 300;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-tamil {
+        font-size: 1.1rem;
+        color: var(--gray-500);
+        margin-bottom: 2rem;
+        font-style: italic;
+      }
+
+      /* Section Styles */
+      section {
+        padding: 6rem 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .section-title {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        font-weight: 700;
+        color: var(--primary-black);
+        text-align: center;
+        margin-bottom: 3rem;
+        letter-spacing: -1px;
+      }
+
+      .section-subtitle {
+        font-size: 1.2rem;
+        color: var(--gray-600);
+        text-align: center;
+        margin-bottom: 4rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Mission & Vision Section */
+      .mission-vision {
+        background: var(--primary-white);
+      }
+
+      .mission-vision-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: start;
+      }
+
+      .mission-card,
+      .vision-card {
+        background: var(--gray-100);
+        padding: 3rem 2rem;
+        border: 1px solid var(--gray-200);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .mission-card::before,
+      .vision-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 0, 0, 0.02),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .mission-card:hover::before,
+      .vision-card:hover::before {
+        left: 100%;
+      }
+
+      .mission-card:hover,
+      .vision-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border-color: var(--primary-black);
+      }
+
+      .mission-card h3,
+      .vision-card h3 {
+        font-size: 2rem;
+        color: var(--primary-black);
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .mission-card p,
+      .vision-card p {
+        color: var(--gray-600);
+        font-size: 1.1rem;
+        line-height: 1.8;
+      }
+
+      .card-icon {
+        width: 50px;
+        height: 50px;
+        background: var(--primary-black);
+        color: var(--primary-white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        border-radius: 4px;
+      }
+
+      /* Story Section */
+      .our-story {
+        background: var(--gray-100);
+      }
+
+      .story-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .story-content p {
+        font-size: 1.2rem;
+        color: var(--gray-700);
+        margin-bottom: 2rem;
+        line-height: 1.8;
+      }
+
+      .story-highlight {
+        background: var(--primary-white);
+        border-left: 4px solid var(--primary-black);
+        padding: 2rem;
+        margin: 3rem 0;
+        font-style: italic;
+        font-size: 1.3rem;
+        color: var(--gray-700);
+        position: relative;
+      }
+
+      .story-highlight::before {
+        content: '"';
+        font-size: 4rem;
+        color: var(--gray-300);
+        position: absolute;
+        top: -10px;
+        left: 20px;
+        line-height: 1;
+      }
+
+      /* Values Section */
+      .our-values {
+        background: var(--primary-white);
+      }
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .value-card {
+        background: var(--primary-white);
+        padding: 2.5rem 2rem;
+        border: 2px solid var(--gray-200);
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .value-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 0, 0, 0.02),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .value-card:hover::before {
+        left: 100%;
+      }
+
+      .value-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border-color: var(--primary-black);
+      }
+
+      .value-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--gray-100);
+        border: 2px solid var(--gray-300);
+        margin: 0 auto 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        transition: all 0.3s ease;
+      }
+
+      .value-card:hover .value-icon {
+        background: var(--primary-black);
+        color: var(--primary-white);
+        border-color: var(--primary-black);
+      }
+
+      .value-card h3 {
+        font-size: 1.3rem;
+        color: var(--primary-black);
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .value-card p {
+        color: var(--gray-600);
+        line-height: 1.6;
+        font-size: 1rem;
+      }
+
+      /* Team Section */
+      .our-team {
+        background: var(--gray-100);
+      }
+
+      .team-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .team-description {
+        font-size: 1.2rem;
+        color: var(--gray-700);
+        margin-bottom: 3rem;
+        line-height: 1.7;
+      }
+
+      .team-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 2rem;
+        background: var(--primary-white);
+        border: 1px solid var(--gray-200);
+        transition: all 0.3s ease;
+      }
+
+      .stat-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border-color: var(--primary-black);
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: var(--primary-black);
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        color: var(--gray-600);
+        font-weight: 500;
+        font-size: 1rem;
+      }
+
+      /* Journey Section */
+      .our-journey {
+        background: var(--primary-black);
+        color: var(--primary-white);
+      }
+
+      .our-journey .section-title {
+        color: var(--primary-white);
+      }
+
+      .our-journey .section-subtitle {
+        color: var(--gray-300);
+      }
+
+      .timeline {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .timeline-item {
+        padding: 2rem 0;
+        border-left: 2px solid var(--gray-700);
+        margin-left: 2rem;
+        position: relative;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -8px;
+        top: 2.5rem;
+        width: 12px;
+        height: 12px;
+        background: var(--primary-white);
+        border-radius: 50%;
+      }
+
+      .timeline-item:hover::before {
+        background: var(--gray-300);
+        transform: scale(1.2);
+        transition: all 0.3s ease;
+      }
+
+      .timeline-content {
+        padding-left: 2rem;
+      }
+
+      .timeline-year {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--gray-300);
+        margin-bottom: 0.5rem;
+      }
+
+      .timeline-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--primary-white);
+        margin-bottom: 1rem;
+      }
+
+      .timeline-description {
+        color: var(--gray-300);
+        line-height: 1.6;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        background: var(--primary-white);
+        text-align: center;
+      }
+
+      .cta-content {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .cta-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-black);
+        margin-bottom: 1.5rem;
+      }
+
+      .cta-description {
+        font-size: 1.2rem;
+        color: var(--gray-600);
+        margin-bottom: 2.5rem;
+        line-height: 1.7;
+      }
+
+      .btn {
+        padding: 1rem 2rem;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+      }
+
+      .btn-primary {
+        background: var(--primary-black);
+        color: var(--primary-white);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--gray-900);
+        color: var(--gray-300);
+        padding: 2rem 0;
+        text-align: center;
+      }
+
+      footer .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      footer p {
+        margin: 0;
+        font-size: 0.9rem;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-menu {
+          display: none;
+        }
+
+        .mobile-menu {
+          display: flex;
+        }
+
+        .mission-vision-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .values-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .team-stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .timeline-item {
+          margin-left: 1rem;
+        }
+
+        .timeline-content {
+          padding-left: 1.5rem;
+        }
+
+        .hero-title {
+          font-size: 2.5rem;
+        }
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in-up {
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      .scroll-animate {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.6s ease;
+      }
+
+      .scroll-animate.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <div id="header"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content fade-in-up">
+        <h1 class="hero-title orbitron">About Vision A2Z</h1>
+        <p class="hero-subtitle">
+          We're on a mission to bring extraordinary technology to ordinary
+          people, transforming how businesses operate across India and beyond.
+        </p>
+        <p class="hero-tamil">சாதாரண மக்களுக்கு அசாதாரண தொழில்நுட்பம்</p>
+      </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="mission-vision">
+      <div class="container">
+        <div class="mission-vision-grid">
+          <div class="mission-card scroll-animate">
+            <h3>Our Mission</h3>
+            <p>
+              To democratize enterprise-grade technology by creating intuitive,
+              powerful software solutions that empower businesses of all sizes.
+              We believe that advanced technology shouldn't be a privilege of
+              large corporations, but a tool accessible to every organization
+              striving for excellence.
+            </p>
+          </div>
+
+          <div class="vision-card scroll-animate">
+            <h3>Our Vision</h3>
+            <p>
+              To become the leading provider of comprehensive enterprise
+              solutions across India, known for transforming complex business
+              challenges into simple, elegant solutions. We envision a future
+              where technology seamlessly integrates with human potential to
+              create extraordinary outcomes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="our-story">
+      <div class="container">
+        <h2 class="section-title orbitron scroll-animate">Our Story</h2>
+        <div class="story-content scroll-animate">
+          <p>
+            Vision A2Z was born from a simple observation: while technology was
+            advancing at an unprecedented pace, most businesses were struggling
+            to keep up. We saw schools drowning in paperwork, hospitals
+            overwhelmed by administrative tasks, and event organizers juggling
+            dozens of disconnected tools.
+          </p>
+
+          <div class="story-highlight">
+            We realized that the problem wasn't a lack of technology—it was the
+            complexity that came with it. So we set out to change that.
+          </div>
+
+          <p>
+            Founded by a team of passionate technologists and business
+            professionals, Vision A2Z emerged with a clear purpose: to bridge
+            the gap between sophisticated enterprise capabilities and practical
+            usability. We started with a fundamental belief that extraordinary
+            technology should serve ordinary people, not the other way around.
+          </p>
+
+          <p>
+            Today, we're proud to serve educational institutions, healthcare
+            facilities, event management companies, and various other
+            organizations across India, helping them streamline operations and
+            focus on what they do best—serving their communities.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Values Section -->
+    <section class="our-values">
+      <div class="container">
+        <h2 class="section-title orbitron scroll-animate">Our Core Values</h2>
+        <p class="section-subtitle scroll-animate">
+          These principles guide everything we do, from product development to
+          customer support
+        </p>
+
+        <div class="values-grid">
+          <div class="value-card scroll-animate">
+            <h3>Innovation</h3>
+            <p>
+              We constantly push boundaries to create solutions that don't just
+              meet today's needs, but anticipate tomorrow's challenges.
+            </p>
+          </div>
+
+          <div class="value-card scroll-animate">
+            <h3>Simplicity</h3>
+            <p>
+              We believe that the most sophisticated technology should feel
+              effortless to use. Complexity is our challenge, not yours.
+            </p>
+          </div>
+
+          <div class="value-card scroll-animate">
+            <h3>Partnership</h3>
+            <p>
+              We don't just provide software; we build lasting relationships.
+              Your success is our success, and we're committed to your journey.
+            </p>
+          </div>
+
+          <div class="value-card scroll-animate">
+            <h3>Excellence</h3>
+            <p>
+              We're never satisfied with 'good enough.' Every feature, every
+              interaction, every solution is crafted with attention to detail.
+            </p>
+          </div>
+
+          <div class="value-card scroll-animate">
+            <h3>Impact</h3>
+            <p>
+              We measure our success by the positive changes we create in our
+              customers' operations and the communities they serve.
+            </p>
+          </div>
+
+          <div class="value-card scroll-animate">
+            <h3>Adaptability</h3>
+            <p>
+              Technology evolves rapidly, and so do business needs. We build
+              flexible solutions that grow and adapt with your organization.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section class="our-team">
+      <div class="container">
+        <h2 class="section-title orbitron scroll-animate">Our Team</h2>
+        <div class="team-content scroll-animate">
+          <p class="team-description">
+            Behind Vision A2Z is a diverse team of technologists, designers,
+            business analysts, and industry experts who share a common passion:
+            making technology work for people, not against them. Our team
+            combines deep technical expertise with real-world business
+            understanding, ensuring that every solution we create is both
+            powerful and practical.
+          </p>
+
+          <p class="team-description">
+            We're developers who've worked in hospitals, designers who've
+            managed events, and business analysts who understand the daily
+            challenges of running educational institutions. This unique blend of
+            technical skills and domain knowledge allows us to create solutions
+            that truly understand your needs.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Journey Section -->
+    <section class="our-journey">
+      <div class="container">
+        <h2 class="section-title orbitron scroll-animate">Our Journey</h2>
+        <p class="section-subtitle scroll-animate">
+          From concept to comprehensive solutions—here's how we've grown
+        </p>
+
+        <div class="timeline scroll-animate">
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <div class="timeline-year">2025</div>
+              <div class="timeline-title">The Beginning</div>
+              <div class="timeline-description">
+                Vision A2Z was founded with a clear mission: to make enterprise
+                software accessible to businesses of all sizes. Our first focus
+                was understanding the pain points of small and medium
+                organizations.
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <div class="timeline-year">2025 - February</div>
+              <div class="timeline-title">Events A2Z Launch</div>
+              <div class="timeline-description">
+                Our first product, Events A2Z, was launched to help event
+                management companies streamline their operations. The response
+                was overwhelmingly positive, validating our approach to
+                enterprise software.
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <div class="timeline-year">2025 - December</div>
+              <div class="timeline-title">Education Expansion</div>
+              <div class="timeline-description">
+                Recognizing the unique needs of educational institutions, we
+                developed Schools A2Z, a comprehensive management system that
+                revolutionized how schools handle everything from admissions to
+                academics.
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <div class="timeline-year">2025 & Beyond</div>
+              <div class="timeline-title">The Future</div>
+              <div class="timeline-description">
+                We're expanding our reach, exploring new technologies like AI
+                and machine learning, and continuing our mission to democratize
+                enterprise technology across India and beyond.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content scroll-animate">
+          <h2 class="cta-title orbitron">Ready to Transform Your Business?</h2>
+          <p class="cta-description">
+            Join the growing number of organizations that have discovered the
+            power of accessible enterprise technology. Let's discuss how Vision
+            A2Z can help streamline your operations and unlock your potential.
+          </p>
+          <a href="/#contact" class="btn btn-primary">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+
+    <script>
+      // Navbar scroll effect
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("navbar");
+        if (window.scrollY > 100) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".scroll-animate").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Mobile menu toggle
+      const mobileMenu = document.querySelector(".mobile-menu");
+      const navMenu = document.querySelector(".nav-menu");
+
+      if (mobileMenu && navMenu) {
+        mobileMenu.addEventListener("click", () => {
+          navMenu.style.display =
+            navMenu.style.display === "flex" ? "none" : "flex";
+        });
+      }
+
+      // Add loading animation to page
+      window.addEventListener("load", () => {
+        document.body.style.opacity = "1";
+      });
+
+      // Timeline animation enhancement
+      const timelineItems = document.querySelectorAll(".timeline-item");
+
+      const timelineObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateX(0)";
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      timelineItems.forEach((item, index) => {
+        item.style.opacity = "0";
+        item.style.transform = "translateX(-50px)";
+        item.style.transition = `all 0.6s ease ${index * 0.1}s`;
+        timelineObserver.observe(item);
+      });
+
+      // Value cards hover effect enhancement
+      const valueCards = document.querySelectorAll(".value-card");
+      valueCards.forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.borderColor = "var(--primary-black)";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.borderColor = "var(--gray-200)";
+        });
+      });
+
+      // Stats counter animation
+      const statsObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const statNumber = entry.target.querySelector(".stat-number");
+              if (statNumber && !statNumber.classList.contains("animated")) {
+                statNumber.classList.add("animated");
+                const finalValue = statNumber.textContent;
+                const isPercentage = finalValue.includes("%");
+                const isPlus = finalValue.includes("+");
+                const numericValue = parseInt(finalValue.replace(/[^\d]/g, ""));
+
+                let currentValue = 0;
+                const increment = Math.ceil(numericValue / 30);
+
+                const counter = setInterval(() => {
+                  currentValue += increment;
+                  if (currentValue >= numericValue) {
+                    currentValue = numericValue;
+                    clearInterval(counter);
+                  }
+
+                  let displayValue = currentValue.toString();
+                  if (isPlus) displayValue += "+";
+                  if (isPercentage) displayValue += "%";
+
+                  statNumber.textContent = displayValue;
+                }, 50);
+              }
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      document.querySelectorAll(".stat-item").forEach((item) => {
+        statsObserver.observe(item);
+      });
+
+      fetch("components/footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        });
+
+      fetch("components/header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header").innerHTML = data;
+        });
+    </script>
+  </body>
+</html>
