@@ -230,22 +230,14 @@
 
       .article-thumbnail {
         width: 250px;
-        height: 150px;
-        background: linear-gradient(45deg, var(--gray-200) 25%, transparent 25%),
-          linear-gradient(-45deg, var(--gray-200) 25%, transparent 25%);
-        background-size: 15px 15px;
-        background-position: 0 0, 7px 7px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
+        height: 100%;
         border: 1px solid var(--gray-300);
       }
 
-      .article-thumbnail::after {
-        content: "📰";
-        font-size: 2rem;
-        opacity: 0.3;
+      .article-thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
       .article-content {
@@ -297,6 +289,7 @@
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
+        padding-bottom: 20px;
       }
 
       .read-more {
@@ -423,7 +416,12 @@
     <main class="main-content">
       <div class="blog-grid">
         <article class="article-card scroll-animate">
-          <div class="article-thumbnail"></div>
+          <div class="article-thumbnail">
+            <img
+              src="https://images.pexels.com/photos/1600757/pexels-photo-1600757.jpeg?_gl=1*fawhyq*_ga*MTcyODI4MjU1Ni4xNzU3MzkxMzIw*_ga_8JE65Q40S6*czE3NTczOTEzMjAkbzEkZzEkdDE3NTczOTM3NDUkajUxJGwwJGgw"
+              alt=""
+            />
+          </div>
           <div class="article-content">
             <div class="article-meta">
               <span class="article-tag">Enterprise Solutions</span>
@@ -454,7 +452,9 @@
         </article>
 
         <article class="article-card scroll-animate">
-          <div class="article-thumbnail"></div>
+          <div class="article-thumbnail">
+            <img src="https://images.pexels.com/photos/1350560/pexels-photo-1350560.jpeg?_gl=1*jnvfbk*_ga*MTcyODI4MjU1Ni4xNzU3MzkxMzIw*_ga_8JE65Q40S6*czE3NTczOTEzMjAkbzEkZzEkdDE3NTczOTE4MDAkajQ0JGwwJGgw" alt="">
+          </div>
           <div class="article-content">
             <div class="article-meta">
               <span class="article-tag">Healthcare Technology</span>
@@ -483,7 +483,9 @@
         </article>
 
         <article class="article-card scroll-animate">
-          <div class="article-thumbnail"></div>
+          <div class="article-thumbnail">
+            <img src="https://images.pexels.com/photos/764681/pexels-photo-764681.jpeg?_gl=1*kme401*_ga*MTcyODI4MjU1Ni4xNzU3MzkxMzIw*_ga_8JE65Q40S6*czE3NTczOTEzMjAkbzEkZzEkdDE3NTczOTIxODckajQyJGwwJGgw" alt="">
+          </div>
           <div class="article-content">
             <div class="article-meta">
               <span class="article-tag">Education Technology</span>
@@ -512,7 +514,9 @@
         </article>
 
         <article class="article-card scroll-animate">
-          <div class="article-thumbnail"></div>
+          <div class="article-thumbnail">
+            <img src="https://images.pexels.com/photos/5759215/pexels-photo-5759215.jpeg?_gl=1*o2whtt*_ga*MTcyODI4MjU1Ni4xNzU3MzkxMzIw*_ga_8JE65Q40S6*czE3NTczOTEzMjAkbzEkZzEkdDE3NTczOTE2NzYkajEyJGwwJGgw" alt="">
+          </div>
           <div class="article-content">
             <div class="article-meta">
               <span class="article-tag">Event Management</span>
@@ -541,7 +545,9 @@
         </article>
 
         <article class="article-card scroll-animate">
-          <div class="article-thumbnail"></div>
+          <div class="article-thumbnail">
+            <img src="https://images.pexels.com/photos/1182963/pexels-photo-1182963.jpeg?_gl=1*913dj*_ga*MTcyODI4MjU1Ni4xNzU3MzkxMzIw*_ga_8JE65Q40S6*czE3NTczOTEzMjAkbzEkZzEkdDE3NTczOTQwNTQkajMxJGwwJGgw" alt="">
+          </div>
           <div class="article-content">
             <div class="article-meta">
               <span class="article-tag">Case Study</span>
@@ -570,7 +576,9 @@
         </article>
 
         <article class="article-card scroll-animate">
-          <div class="article-thumbnail"></div>
+          <div class="article-thumbnail">
+            <img src="https://images.pexels.com/photos/32213424/pexels-photo-32213424.jpeg?_gl=1*ta3zgs*_ga*MTcyODI4MjU1Ni4xNzU3MzkxMzIw*_ga_8JE65Q40S6*czE3NTczOTEzMjAkbzEkZzEkdDE3NTczOTE1NjgkajQwJGwwJGgw" alt="">
+          </div>
           <div class="article-content">
             <div class="article-meta">
               <span class="article-tag">Digital Transformation</span>
@@ -599,7 +607,9 @@
         </article>
 
         <article class="article-card scroll-animate">
-          <div class="article-thumbnail"></div>
+          <div class="article-thumbnail">
+            <img src="https://images.pexels.com/photos/8849295/pexels-photo-8849295.jpeg?_gl=1*s59vvv*_ga*MTcyODI4MjU1Ni4xNzU3MzkxMzIw*_ga_8JE65Q40S6*czE3NTczOTEzMjAkbzEkZzEkdDE3NTczOTQwOTAkajU5JGwwJGgw" alt="">
+          </div>
           <div class="article-content">
             <div class="article-meta">
               <span class="article-tag">Business Intelligence</span>
@@ -628,7 +638,9 @@
         </article>
 
         <article class="article-card scroll-animate">
-          <div class="article-thumbnail"></div>
+          <div class="article-thumbnail">
+            <img src="https://images.pexels.com/photos/18512943/pexels-photo-18512943.jpeg?_gl=1*bvx0nh*_ga*MTcyODI4MjU1Ni4xNzU3MzkxMzIw*_ga_8JE65Q40S6*czE3NTczOTEzMjAkbzEkZzEkdDE3NTczOTQyMDUkajkkbDAkaDA." alt="">
+          </div>
           <div class="article-content">
             <div class="article-meta">
               <span class="article-tag">ROI Analysis</span>
@@ -657,7 +669,9 @@
         </article>
 
         <article class="article-card scroll-animate">
-          <div class="article-thumbnail"></div>
+          <div class="article-thumbnail">
+            <img src="https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?_gl=1*17v118h*_ga*MTcyODI4MjU1Ni4xNzU3MzkxMzIw*_ga_8JE65Q40S6*czE3NTczOTEzMjAkbzEkZzEkdDE3NTczOTIwNjYkajQxJGwwJGgw" alt="">
+          </div>
           <div class="article-content">
             <div class="article-meta">
               <span class="article-tag">Digital Transformation</span>
@@ -686,7 +700,9 @@
         </article>
 
         <article class="article-card scroll-animate">
-          <div class="article-thumbnail"></div>
+          <div class="article-thumbnail">
+            <img src="https://images.pexels.com/photos/672802/pexels-photo-672802.jpeg?_gl=1*10pv6rm*_ga*MTcyODI4MjU1Ni4xNzU3MzkxMzIw*_ga_8JE65Q40S6*czE3NTczOTEzMjAkbzEkZzEkdDE3NTczOTE5MTgkajI0JGwwJGgw" alt="">
+          </div>
           <div class="article-content">
             <div class="article-meta">
               <span class="article-tag">Technology Philosophy</span>
@@ -714,7 +730,9 @@
         </article>
 
         <article class="article-card scroll-animate">
-          <div class="article-thumbnail"></div>
+          <div class="article-thumbnail">
+            <img src="https://images.pexels.com/photos/669610/pexels-photo-669610.jpeg?_gl=1*yq1s7i*_ga*MTcyODI4MjU1Ni4xNzU3MzkxMzIw*_ga_8JE65Q40S6*czE3NTczOTEzMjAkbzEkZzEkdDE3NTczOTEzNTckajIzJGwwJGgw" alt="">
+          </div>
           <div class="article-content">
             <div class="article-meta">
               <span class="article-tag">Business Assessment</span>
@@ -743,7 +761,9 @@
         </article>
 
         <article class="article-card scroll-animate">
-          <div class="article-thumbnail"></div>
+          <div class="article-thumbnail">
+            <img src="https://images.pexels.com/photos/1619572/pexels-photo-1619572.jpeg?_gl=1*losuhf*_ga*MTcyODI4MjU1Ni4xNzU3MzkxMzIw*_ga_8JE65Q40S6*czE3NTczOTEzMjAkbzEkZzEkdDE3NTczOTQyODYkajQkbDAkaDA." alt="">
+          </div>
           <div class="article-content">
             <div class="article-meta">
               <span class="article-tag">Customer Support</span>
@@ -772,7 +792,9 @@
         </article>
 
         <article class="article-card scroll-animate">
-          <div class="article-thumbnail"></div>
+          <div class="article-thumbnail">
+            <img src="https://images.pexels.com/photos/2918534/pexels-photo-2918534.jpeg?_gl=1*vupuz2*_ga*MTcyODI4MjU1Ni4xNzU3MzkxMzIw*_ga_8JE65Q40S6*czE3NTczOTEzMjAkbzEkZzEkdDE3NTczOTQxNTUkajU5JGwwJGgw" alt="">
+          </div>
           <div class="article-content">
             <div class="article-meta">
               <span class="article-tag">Customization</span>
@@ -801,7 +823,9 @@
         </article>
 
         <article class="article-card scroll-animate">
-          <div class="article-thumbnail"></div>
+          <div class="article-thumbnail">
+            <img src="https://images.pexels.com/photos/1602726/pexels-photo-1602726.jpeg?_gl=1*xplbvd*_ga*MTcyODI4MjU1Ni4xNzU3MzkxMzIw*_ga_8JE65Q40S6*czE3NTczOTEzMjAkbzEkZzEkdDE3NTczOTE5OTYkajQ2JGwwJGgw" alt="">
+          </div>
           <div class="article-content">
             <div class="article-meta">
               <span class="article-tag">Small Business</span>
@@ -830,7 +854,9 @@
         </article>
 
         <article class="article-card scroll-animate">
-          <div class="article-thumbnail"></div>
+          <div class="article-thumbnail">
+            <img src="https://images.pexels.com/photos/210364/pexels-photo-210364.jpeg?_gl=1*i6zssf*_ga*MTcyODI4MjU1Ni4xNzU3MzkxMzIw*_ga_8JE65Q40S6*czE3NTczOTEzMjAkbzEkZzEkdDE3NTczOTM5MTQkajI5JGwwJGgw" alt="">
+          </div>
           <div class="article-content">
             <div class="article-meta">
               <span class="article-tag">Regional Development</span>
@@ -859,7 +885,9 @@
         </article>
 
         <article class="article-card scroll-animate">
-          <div class="article-thumbnail"></div>
+          <div class="article-thumbnail">
+            <img src="https://images.pexels.com/photos/1001914/pexels-photo-1001914.jpeg?_gl=1*1mhk6gh*_ga*MTcyODI4MjU1Ni4xNzU3MzkxMzIw*_ga_8JE65Q40S6*czE3NTczOTEzMjAkbzEkZzEkdDE3NTczOTIyMTkkajEwJGwwJGgw" alt="">
+          </div>
           <div class="article-content">
             <div class="article-meta">
               <span class="article-tag">Education Technology</span>
@@ -888,7 +916,9 @@
         </article>
 
         <article class="article-card scroll-animate">
-          <div class="article-thumbnail"></div>
+          <div class="article-thumbnail">
+            <img src="https://ionic.io/blog/wp-content/uploads/2024/02/angular-feature-image-1-1024x512.png" alt="">
+          </div>
           <div class="article-content">
             <div class="article-meta">
               <span class="article-tag">Technology Stack</span>
@@ -917,7 +947,9 @@
         </article>
 
         <article class="article-card scroll-animate">
-          <div class="article-thumbnail"></div>
+          <div class="article-thumbnail">
+            <img src="https://images.pexels.com/photos/32846085/pexels-photo-32846085.jpeg?_gl=1*ratuz2*_ga*MTcyODI4MjU1Ni4xNzU3MzkxMzIw*_ga_8JE65Q40S6*czE3NTczOTEzMjAkbzEkZzEkdDE3NTczOTQzMjUkajQ3JGwwJGgw" alt="">
+          </div>
           <div class="article-content">
             <div class="article-meta">
               <span class="article-tag">Tamil Content</span>

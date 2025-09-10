@@ -302,6 +302,12 @@
         transition: all 0.3s ease;
       }
 
+      .product-demo-visual img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+
       .product-demo-visual:hover {
         border-color: var(--primary-black);
         transform: translateY(-5px);
@@ -744,11 +750,13 @@
             </p>
             <div class="btn-group">
               <a href="#" class="btn btn-primary"> Request Demo </a>
-              <a href="#" class="btn btn-secondary">Learn More </a>
             </div>
           </div>
           <div class="product-demo-visual">
-            <div class="demo-icon">🎪</div>
+            <img
+              src="https://cdn.pixabay.com/photo/2016/11/23/15/48/audience-1853662_1280.jpg"
+              alt=""
+            />
           </div>
         </div>
 
@@ -857,11 +865,10 @@
             </p>
             <div class="btn-group">
               <a href="#" class="btn btn-primary"> Request Demo </a>
-              <a href="#" class="btn btn-secondary">Learn More </a>
             </div>
           </div>
           <div class="product-demo-visual">
-            <div class="demo-icon">🎓</div>
+            <img src="https://images.unsplash.com/photo-1524069290683-0457abfe42c3?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2Nob29sJTIwc3R1ZGVudHxlbnwwfHwwfHx8MA%3D%3D" alt="">
           </div>
         </div>
 
@@ -980,11 +987,10 @@
             </p>
             <div class="btn-group">
               <a href="#" class="btn btn-primary"> Request Demo </a>
-              <a href="#" class="btn btn-secondary"> Learn More </a>
             </div>
           </div>
           <div class="product-demo-visual">
-            <div class="demo-icon">🏥</div>
+            <img src="https://cdn.pixabay.com/photo/2020/04/19/20/10/test-tube-5065426_1280.jpg" alt="">
           </div>
         </div>
 
@@ -1064,7 +1070,7 @@
               <div class="benefit-item">
                 <div class="benefit-text">Ensure HIPAA compliance</div>
               </div>
-              <div class="benefit-item">    
+              <div class="benefit-item">
                 <div class="benefit-text">
                   Mobile access for healthcare providers
                 </div>
@@ -1331,14 +1337,13 @@
       `;
       document.head.appendChild(style);
 
-
       fetch("components/footer.html")
         .then((response) => response.text())
         .then((data) => {
           document.getElementById("footer").innerHTML = data;
         });
 
-        fetch("components/header.html")
+      fetch("components/header.html")
         .then((response) => response.text())
         .then((data) => {
           document.getElementById("header").innerHTML = data;
